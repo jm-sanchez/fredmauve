@@ -1,5 +1,13 @@
 # fredmauve
 
-Bonjour, je modifie encore.
+Salut,
 
-Ok. C'est à mon tour d'essayer la modif.
+J'ai fait le suivant : 
+
+1. Création de plusieurs dossiers et fichiers dans "public"
+    - Ajout de la police que on a vu sur WP
+    - Dossier media/images avec deux images que j'ai pris du facebook de Fred
+    - création du fichier style css pour pouvoir afficher la police dans le site
+
+2. J'ai ajouté un footer avec le contenu de la navbar et les réseaux sociaux
+3. et j'ai modifié la page d'accueil (le minimum)
