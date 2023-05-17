@@ -5,13 +5,19 @@
 {% block body %}
 
 <h1 class="text-center my-4">Contact</h1>
-<div class="m-5 bg-black text-light p-4 rounded-3">
+<div class="m-5 bg-black text-light p-4 rounded-3 d-column-flex justify-content-center">
     <p class ="fs-4">Vous pouvez me contacter directement via ce formulaire</p>
     {{ form_start(formContact) }}
+    <div class="my-3">
         {{ form_row(formContact.name) }}
+    </div>
+    <div class="my-3">
         {{ form_row(formContact.email) }}
+    </div>
+    <div class="my-3">
         {{ form_row(formContact.message) }}
-    <div class="d-flex justify-content-center">
+    </div>
+    <div class="mt-3 d-flex justify-content-center">
         {{ form_row(formContact.button) }}
     </div>
     {{ form_end(formContact) }}

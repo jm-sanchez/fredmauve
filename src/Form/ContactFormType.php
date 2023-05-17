@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class ContactFormType extends AbstractType
 {
@@ -18,28 +17,32 @@ class ContactFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => false,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Votre nom...'
+                    'placeholder' => 'Votre nom...',
                 ]
             ])
             ->add('email', EmailType::class, [
+                'label' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Votre email...'
+                    'placeholder' => 'Votre email...',
                 ]
             ])
             ->add('message', TextareaType::class, [
+                'label' => false,
                 'attr' => [
                     'rows' => '5',
                     'class' => 'form-control',
-                    'placeholder' => 'Votre message...'
+                    'placeholder' => 'Votre message...',
                 ]
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-outline-light mt-3 btn-lg'
+                    'class' => 'btn btn-outline-light btn-lg'
                 ]
 
             ])
