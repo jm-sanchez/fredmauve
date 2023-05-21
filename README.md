@@ -13,3 +13,7 @@ J'ai fait le suivant :
 3. et j'ai modifié la page d'accueil (le minimum)
 4. J'ai créé l'entité Contact et le ContactTypeForm pour pouvoir construire le formulaire.
 5. L'affichage du formulaire de contact est construit.
+
+- Modification de la vue sur page d'accueil et la page de contact
+- Création de la bdd "fred" pour vérifier si les données du formulaire de contact sont correctement ajoutées.
+

@@ -20,16 +20,42 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(
+     *     message = "Merci de remplir ce champ."
+     * )
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage = "Ce champ doit comporter au moins {{ limit }} caractères.",
+     *     maxMessage = "Ce champ ne peut pas dépasser {{ limit }} caractères."
+     * )
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(
+     *     message = "Merci de remplir ce champ."
+     * )
+     * @Assert\Email(
+     *     message = "L'email {{ value }} n'est pas valide."
+     * )
      */
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(
+     *     message = "Merci de remplir ce champ."
+     * )
+     */
+    private $subject;
+
+    /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *     message = "Merci de remplir ce champ."
+     * )
      */
     private $message;
 
@@ -37,6 +63,7 @@ class Contact
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
 
     public function getId(): ?int
     {
@@ -87,6 +114,18 @@ class Contact
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }

@@ -2,12 +2,34 @@
 
 {% block title %}Accueil - Fred Mauve{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('dist/assets/css/home.css') }}">
+{% endblock %}
+
 {% block body %}
 
-<div class="example-wrapper p-5">
-    <h1 class="text-center my-4">Fred Mauve</h1>
-    <div class="d-flex justify-content-center">
-        <img class="img-fluid shadow-lg rounded" src="{{ asset('dist/assets/media/images/foule.jpeg') }}" alt="">
+<main class="container-xxl px-5">
+    <h1 class="text-center my-5">Fred Mauve</h1>
+    {# Message Flash #}
+    {% for message in app.flashes('notice') %}
+    <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
+    {% endfor %}
+    <div class="row">
+        <section class="col-lg-6 d-flex justify-content-center">
+            <figure>
+                <img class="img-fluid shadow-lg" src="{{ asset('dist/assets/media/images/prixAralya.jpg') }}" alt="">
+                <figcaption class = "text-end mt-2">Prix Arayla 2022 - Sans titre – Acrylique et stylo bille – 100×100 cm</figcaption>
+            </figure>
+        </section>
+        {# Phrase de l'artiste #}
+        <section class="col-lg-6 py-4 p-sm-5 p-lg-5 my-3 fs-2 d-flex align-items-start">
+            <figure class="">
+                <blockquote cite="https://www.aralya.fr/les-artistes-investissent-fontenay-sous-bois/">
+                "Le stylo bille, mon arme de dénonciation massive, contre la guerre et tous les tyrans qui précipitent les populations dans un enfer sur terre !"
+                </blockquote>
+                <figcaption class="text-end">- Fred Mauve</figcaption>
+            </figure>
+        </section>
     </div>
-</div>
+</main>
 {% endblock %}

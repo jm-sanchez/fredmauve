@@ -1,0 +1,16 @@
+h1 {
+    font-size: 3.5rem;
+}
+
+.fa-facebook:hover {
+    text-shadow: #3b5998 1px 0 10px;
+}
+
+.fa-instagram:hover {
+    text-shadow: #E4405F 1px 0 10px;
+}
+
+.outline:focus {
+    outline: 2px outset #ffffff;
+    box-shadow: 3px 2px 15px #818181;
+}

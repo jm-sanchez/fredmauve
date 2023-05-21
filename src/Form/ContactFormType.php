@@ -20,23 +20,33 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control outline',
                     'placeholder' => 'Votre nom...',
                 ]
             ])
             ->add('email', EmailType::class, [
+                'required' => false,
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control outline',
                     'placeholder' => 'Votre email...',
+                ]
+            ])
+            ->add('subject', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control outline',
+                    'placeholder' => 'Sujet de votre message...',
                 ]
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'rows' => '5',
-                    'class' => 'form-control',
-                    'placeholder' => 'Votre message...',
+                    'class' => 'form-control outline',
+                    'placeholder' => 'Votre message ou commentaire...',
                 ]
             ])
             ->add('button', SubmitType::class, [

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $manager): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactFormType::class, $contact);
@@ -23,6 +24,7 @@ class ContactController extends AbstractController
             $name = filter_var($form->get("name")->getData(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_var($form->get("email")->getData(), FILTER_VALIDATE_EMAIL);
             $message = filter_var($form->get("message")->getData(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date = new \DateTime();
             if ($name) {
                 $form->get("name")->getData();
             }
@@ -32,7 +34,16 @@ class ContactController extends AbstractController
             if ($message) {
                 $form->get("message")->getData();
             }
-            return $this->redirectToRoute('contact_success');
+            $contact->setCreatedAt($date);
+            
+            $manager->persist($contact);
+            $manager->flush();
+            // Message flash
+            $this->addFlash(
+                'notice',
+                'Votre message a été envoyé !'
+            );
+            return $this->redirectToRoute('app_home');
         }
 
 
