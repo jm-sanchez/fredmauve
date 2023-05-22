@@ -14,6 +14,8 @@ J'ai fait le suivant :
 4. J'ai créé l'entité Contact et le ContactTypeForm pour pouvoir construire le formulaire.
 5. L'affichage du formulaire de contact est construit.
 
+21/05
 - Modification de la vue sur page d'accueil et la page de contact
 - Création de la bdd "fred" pour vérifier si les données du formulaire de contact sont correctement ajoutées.
-
+- Mise en place du fonctionnement du message flash dans le ContactController
+- Validation du formulaire de contact via l'entitée Contact
