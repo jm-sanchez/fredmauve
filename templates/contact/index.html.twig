@@ -67,6 +67,10 @@
                 {{ form_row(formContact.button) }}
             </div>
             {{ form_end(formContact) }}
+            {# Message Flash #}
+            {% for message in app.flashes('notice') %}
+            <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
+            {% endfor %}
         </section>
     </div>
 </div>

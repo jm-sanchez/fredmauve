@@ -43,7 +43,7 @@ class ContactController extends AbstractController
                 'notice',
                 'Votre message a été envoyé !'
             );
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_contact');
         }
 
 

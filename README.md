@@ -17,5 +17,5 @@ J'ai fait le suivant :
 21/05
 - Modification de la vue sur page d'accueil et la page de contact
 - Création de la bdd "fred" pour vérifier si les données du formulaire de contact sont correctement ajoutées.
-- Mise en place du fonctionnement du message flash dans le ContactController
-- Validation du formulaire de contact via l'entitée Contact
+- Mise en place du fonctionnement du message flash dans le ContactController qui s'affiche dans la vue de contact
+- Validation du formulaire de contact via l'entité Contact
