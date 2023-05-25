@@ -19,3 +19,18 @@ J'ai fait le suivant :
 - Création de la bdd "fred" pour vérifier si les données du formulaire de contact sont correctement ajoutées.
 - Mise en place du fonctionnement du message flash dans le ContactController qui s'affiche dans la vue de contact
 - Validation du formulaire de contact via l'entité Contact
+
+25/05
+- Création de l'entité Admin
+    commande : symfony console make:user Admin
+    Ceci nous a créé :
+        * Entity/Admin.php
+        * Repository/AdminRepository.php
+- Création de l'espace de Connexion (login)
+    commande : symfony console make:auth
+    Ceci nous a créé :
+        * src/Security/AppAuthenticator.php
+        * templates/security/login.html.twig
+        *
+- Création des fixtures pour définir les données de l'admin
+    commande : symfony console make:fixtures

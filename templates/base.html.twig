@@ -49,7 +49,19 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li> #}
+                        {% if app.user %}
+                        <div class="mb-3 text-light">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                        {% endif %}
+                        <li>
+                            <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_logout') }}" class="btn btn-danger mx-2">Déconnexion</a>
+                        </li>
                     </ul>
+
                     {# <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
