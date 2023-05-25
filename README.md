@@ -20,6 +20,10 @@ J'ai fait le suivant :
 - Mise en place du fonctionnement du message flash dans le ContactController qui s'affiche dans la vue de contact
 - Validation du formulaire de contact via l'entité Contact
 
+24/05
+- Présentation de la maquette
+    Redaction du cahier de charges
+
 25/05
 - Création de l'entité Admin
     commande : symfony console make:user Admin
@@ -34,3 +38,7 @@ J'ai fait le suivant :
         *
 - Création des fixtures pour définir les données de l'admin
     commande : symfony console make:fixtures
+
+- Création des entités Work et News
+- Mise en place des relations entre les tables (Work, News et Contact)
+    Toutes les tables sont réliées à Admin. Pour cette raison, chaque table possède une clé étrangère "administrator".

@@ -64,6 +64,12 @@ class Contact
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=admin::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $administrator;
+
 
     public function getId(): ?int
     {
@@ -126,6 +132,18 @@ class Contact
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function getAdministrator(): ?admin
+    {
+        return $this->administrator;
+    }
+
+    public function setAdministrator(?admin $administrator): self
+    {
+        $this->administrator = $administrator;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,6 +37,35 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=work::class, mappedBy="administrator")
+     */
+    private $work;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="test")
+     */
+    private $tests;
+
+    /**
+     * @ORM\OneToMany(targetEntity=News::class, mappedBy="administrator")
+     */
+    private $news;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="administrator")
+     */
+    private $contacts;
+
+
+    public function __construct()
+    {
+        $this->work = new ArrayCollection();
+        $this->tests = new ArrayCollection();
+        $this->news = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,4 +155,103 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    /**
+     * @return Collection<int, work>
+     */
+    public function getWork(): Collection
+    {
+        return $this->work;
+    }
+
+    /**
+     * @return Collection<int, Test>
+     */
+    public function getTests(): Collection
+    {
+        return $this->tests;
+    }
+
+    public function addTest(Test $test): self
+    {
+        if (!$this->tests->contains($test)) {
+            $this->tests[] = $test;
+            $test->setTest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTest(Test $test): self
+    {
+        if ($this->tests->removeElement($test)) {
+            // set the owning side to null (unless already changed)
+            if ($test->getTest() === $this) {
+                $test->setTest(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, News>
+     */
+    public function getNews(): Collection
+    {
+        return $this->news;
+    }
+
+    public function addNews(News $news): self
+    {
+        if (!$this->news->contains($news)) {
+            $this->news[] = $news;
+            $news->setAdministrator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNews(News $news): self
+    {
+        if ($this->news->removeElement($news)) {
+            // set the owning side to null (unless already changed)
+            if ($news->getAdministrator() === $this) {
+                $news->setAdministrator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setAdministrator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getAdministrator() === $this) {
+                $contact->setAdministrator(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
