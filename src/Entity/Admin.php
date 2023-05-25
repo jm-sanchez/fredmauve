@@ -44,11 +44,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private $work;
 
     /**
-     * @ORM\OneToMany(targetEntity=Test::class, mappedBy="test")
-     */
-    private $tests;
-
-    /**
      * @ORM\OneToMany(targetEntity=News::class, mappedBy="administrator")
      */
     private $news;
@@ -62,7 +57,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->work = new ArrayCollection();
-        $this->tests = new ArrayCollection();
         $this->news = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }
@@ -162,36 +156,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function getWork(): Collection
     {
         return $this->work;
-    }
-
-    /**
-     * @return Collection<int, Test>
-     */
-    public function getTests(): Collection
-    {
-        return $this->tests;
-    }
-
-    public function addTest(Test $test): self
-    {
-        if (!$this->tests->contains($test)) {
-            $this->tests[] = $test;
-            $test->setTest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTest(Test $test): self
-    {
-        if ($this->tests->removeElement($test)) {
-            // set the owning side to null (unless already changed)
-            if ($test->getTest() === $this) {
-                $test->setTest(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
