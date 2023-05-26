@@ -23,6 +23,7 @@ J'ai fait le suivant :
 24/05
 - Présentation de la maquette
     Redaction du cahier de charges
+    Le client nous remarque l'importance de l'affichage de l'image dans la galerie. Elle doit contenir des images miniatures qui représenteront les détails de chaque œuvre.
 
 25/05
 - Création de l'entité Admin
