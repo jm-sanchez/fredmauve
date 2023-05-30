@@ -35,7 +35,7 @@ class ContactController extends AbstractController
                 $form->get("message")->getData();
             }
             $contact->setCreatedAt($date);
-            
+
             $manager->persist($contact);
             $manager->flush();
             // Message flash

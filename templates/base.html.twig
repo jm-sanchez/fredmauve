@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Fred Mauve{% endblock %}</title>
@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{{ asset('dist/assets/css/style.css') }}">
         <script src="{{ asset('dist/assets/js/bootstrap.min.js') }}"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}{% endblock %}
@@ -49,18 +49,14 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li> #}
-                        {% if app.user %}
-                        <div class="mb-3 text-light">
-                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                        </div>
-                        {% endif %}
-                        <li>
-                            <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_logout') }}" class="btn btn-danger mx-2">Déconnexion</a>
-                        </li>
                     </ul>
+                    {% if app.user %}
+                    <div class="text-light">
+                        Vous êtes connecté {{ app.user.userIdentifier }}
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Se connecter</a>
+                    {% endif %}
 
                     {# <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -96,17 +92,17 @@
                 </ul>
                 <ul class="nav justify-content-center list-unstyled d-flex border-bottom pb-3 mb-3 fs-1">
                     <li class="mx-3">
-                        <a class="text-black" terget="_blank" href="#">
+                        <a class="text-black" target="_blank" href="#">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li class="mx-3">
-                        <a class="text-black" terget="_blank" href="https://www.instagram.com/fredmauve/">
+                        <a class="text-black" target="_blank" href="https://www.instagram.com/fredmauve/">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
                     </li>
                     <li class="mx-3">
-                        <a class="text-black" terget="_blank" href="https://www.facebook.com/people/Fred-Mauve-Artiste/100064602257294/">
+                        <a class="text-black" target="_blank" href="https://www.facebook.com/people/Fred-Mauve-Artiste/100064602257294/">
                             <i class="fa-brands fa-facebook"></i>
                         </a>
                     </li>
