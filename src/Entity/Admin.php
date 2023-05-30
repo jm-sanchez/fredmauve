@@ -39,7 +39,7 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=work::class, mappedBy="administrator")
+     * @ORM\OneToMany(targetEntity=Work::class, mappedBy="administrator")
      */
     private $work;
 
