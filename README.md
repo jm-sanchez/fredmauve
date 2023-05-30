@@ -1,8 +1,9 @@
 # fredmauve
 
-Salut,
+PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 
-J'ai fait le suivant :
+- Nous avons choisi de travailler avec le framework Symfony dans la version 5.4.22, avec PHP 7.4.33 et Bootstrap v5.3.
+- Création du projet en passant par la commande : symfony new --webapp fredmauve
 
 1. Création de plusieurs dossiers et fichiers dans "public"
     - Ajout de la police qu'on a vu sur WP
@@ -43,3 +44,15 @@ J'ai fait le suivant :
 - Création des entités Work et News
 - Mise en place des relations entre les tables (Work, News et Contact)
     Toutes les tables sont réliées à Admin. Pour cette raison, chaque table possède une clé étrangère "administrator".
+- Répartition des tâches (ne pas toutes):
+    - Juan : page d'accueil, de contact et de la boutique (y compris l'affichage de l'image cliquée).
+    - Loïc : page de la biografie, des actualités et de la galerie (y compris l'affichage de l'image cliquée).
+
+31/05
+- Solution du problème de relation entre les tables.
+    - Sur les entités, les clés étrangères étaient en minuscule et il fallait qu'elles étaient en mayascule.
+        Exemple : targetEntity=admin::class - a été transformé à -
+                  targetEntity=Admin::class
+- Modification de l'affichage sur la base lorsque l'admin est connecté.
+    - Affichage du bouton de "Se connecter" lorque l'admin n'est pas connexté
+    - Affichage du bouton de "Déconnexion" dans le cas inverse.

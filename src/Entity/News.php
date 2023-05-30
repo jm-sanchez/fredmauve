@@ -37,7 +37,7 @@ class News
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=admin::class, inversedBy="news")
+     * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="news")
      * @ORM\JoinColumn(nullable=false)
      */
     private $administrator;

@@ -65,7 +65,7 @@ class Contact
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=admin::class, inversedBy="contacts")
+     * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="contacts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $administrator;
