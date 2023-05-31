@@ -56,3 +56,5 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Modification de l'affichage sur la base lorsque l'admin est connecté.
     - Affichage du bouton de "Se connecter" lorque l'admin n'est pas connexté
     - Affichage du bouton de "Déconnexion" dans le cas inverse.
+    - Affichage du lien "dashboard" dans la navbar
+- Correction du problème avec la clé étrangère dans le controller Contact
