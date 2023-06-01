@@ -3,9 +3,11 @@
     src: url("../font/Space_Mono/SpaceMono-Regular.otf");
     src: url("../font/Space_Mono/SpaceMono-Regular.ttf");
 }
-js
-header {
+
+body {
     font-family: 'Space Mono', monospace;
+}
+header {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -50,6 +52,6 @@ nav .menuItems li a::before {
 nav .menuItems li a:hover::before {
     width: 100%;
     transition: all 0.3s ease-in-out;
-    color: gri;
+    color: black;
 }
 

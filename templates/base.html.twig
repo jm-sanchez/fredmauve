@@ -42,15 +42,15 @@
                         </li>
                         {% endif %}
                     </ul>
+                    </ul>
+                </nav>
                     {% if app.user %}
-                    <div class="text-light">
+                    <div>
                         Vous êtes connecté {{ app.user.userIdentifier }}
                         <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
                     {% else %}
                         <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Se connecter</a>
                     {% endif %}
-                    </ul>
-                </nav>
             </section>
         </header>
         {% block body %}{% endblock %}
