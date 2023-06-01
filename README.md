@@ -58,3 +58,10 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
     - Affichage du bouton de "Déconnexion" dans le cas inverse.
     - Affichage du lien "dashboard" dans la navbar
 - Correction du problème avec la clé étrangère dans le controller Contact
+
+01/06
+- Création du formulaire (sans html/css) d'ajout des News
+- Affichage des News dans le dashboard (sans html/css)
+- Ajout des maquettes pour le dashboard (sur Figma)
+- Modification de la navbar dans base.html.twig (version test)
+- Ajouter de la navbar dans le dashboard (à améliorer)
