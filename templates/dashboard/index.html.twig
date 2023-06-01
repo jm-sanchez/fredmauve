@@ -1,31 +1,27 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Dashboard{% endblock %}
+
 
 {% block body %}
 <h1 class = "text-center mt-5">Dashboard de l'admin</h1>
-<nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ path('admin_dashboard') }}">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Œuvres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_news_home') }}">Actualités</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Boutique</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
-                        </ul>
-                </div>
-            </nav>
+{% endblock %}
+
+{% block sidebar %}
+<div>
+    <ul class="me-auto mb-2 mb-lg-0">
+        <li>
+            <a href="#">Œuvres</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_news_home') }}">Actualités</a>
+        </li>
+        <li>
+            <a href="#">Boutique</a>
+        </li>
+        <li>
+            <a href="#">Contact</a>
+        </li>
+    </ul>
+</div>
 {% endblock %}
