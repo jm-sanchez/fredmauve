@@ -1,8 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/index.html.twig' %}
 
-{% block title %}Gérer les actualités{% endblock %}
 
 {% block body %}
+{{ parent() }}
     <h1 class = "text-center mt-5">Gérer les actualités</h1>
+
+    <div class="container">
+        <table class="table row">
+            <thead>
+                <tr>
+                    <th scope="col" class="offset-2 col-2">Titre</th>
+                    <th scope="col" class="col-3">Description</th>
+                    <th scope="col" class="col-3">Média</th>
+                    <th scope="col" class="col-2">Date de création</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
     {{dump(news)}}
 {% endblock %}
