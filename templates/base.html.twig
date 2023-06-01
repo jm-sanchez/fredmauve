@@ -10,8 +10,6 @@
         <script src="{{ asset('dist/assets/js/bootstrap.min.js') }}"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-
     </head>
     <body>
         <header>
@@ -39,52 +37,12 @@
                         <li>
                             <a href="{{ path('app_contact') }}" data-item='Contact'>Contact</a>
                         </li>
+                        {% if app.user %}
+                        <li>
+                            <a href="{{ path('admin_dashboard') }}" data-item='Dashboard'>Dashboard</a>
+                        </li>
+                        {% endif %}
                     </ul>
-                </nav>
-            </section>
-
-        
-            
-            <nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_about') }}">À propos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_works') }}">Œuvres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_news') }}">Actualités</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_shop') }}">Boutique</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
-                            </li>
-                            {% if app.user %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('admin_dashboard') }}">Dashboard</a>
-                                </li>
-                            {% endif %}
-                            {# <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li> #}
-                        </ul>
                     {% if app.user %}
                     <div class="text-light">
                         Vous êtes connecté {{ app.user.userIdentifier }}
@@ -92,19 +50,14 @@
                     {% else %}
                         <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Se connecter</a>
                     {% endif %}
-
-                    {# <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> #}
-                    </div>
-                </div>
-            </nav>
+                    </ul>
+                </nav>
+            </section>
         </header>
         {% block body %}{% endblock %}
 
-        <div class="container">
-            <footer class="py-3 my-4">
+        <footer class="container">
+            <div class="py-3 my-4">
                 <ul class="nav justify-content-center pb-3">
                     <li class="nav-item">
                         <a href="#" class="nav-link px-2 text-black">Accueil</a>
@@ -143,8 +96,8 @@
                     </li>
                 </ul>
                 <p class="text-center">© 2023 Fred Mauve. Tous droits réservés.</p>
-            </footer>
-        </div>
+            </div>
+        </footer>
 
         {% block javascripts %}{% endblock %}
     </body>
