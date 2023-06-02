@@ -65,3 +65,4 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Ajout des maquettes pour le dashboard (sur Figma)
 - Modification de la navbar dans base.html.twig (version test)
 - Ajouter de la navbar dans le dashboard (à améliorer)
+- Modification du home et mise en place des image cliquables
