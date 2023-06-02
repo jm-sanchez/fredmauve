@@ -16,88 +16,14 @@
                 <h1 class="text-center">
                     <a class="text-reset text-decoration-none" href="{{ path('app_home') }}">Fred Mauve</a>
                 </h1>
-                <nav>
-                    <ul class="menuItems">
-                        <li>
-                            <a href="{{ path('app_home') }}" data-item='Accueil'>Accueil</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_about') }}" data-item='Biographie'>Biographie</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_works') }}" data-item='Œuvres'>Œuvres</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_news') }}" data-item='Actualités'>Actualités</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_shop') }}" data-item='Boutique'>Boutique</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_contact') }}" data-item='Contact'>Contact</a>
-                        </li>
-                        {% if app.user %}
-                        <li>
-                            <a href="{{ path('admin_dashboard') }}" data-item='Dashboard'>Dashboard</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    </ul>
-                </nav>
-                    {% if app.user %}
-                    <div>
-                        Vous êtes connecté {{ app.user.userIdentifier }}
-                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
-                    {% else %}
-                        <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Se connecter</a>
-                    {% endif %}
             </section>
         </header>
+        {% include "_partials/_nav.html.twig" %}
+
+
         {% block body %}{% endblock %}
 
-        <footer class="container">
-            <div class="py-3 my-4">
-                <ul class="nav justify-content-center pb-3">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-black">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_about') }}" class="nav-link px-2 text-black">A propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_works') }}" class="nav-link px-2 text-black">Œuvres</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_news') }}" class="nav-link px-2 text-black">Actualités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_shop') }}" class="nav-link px-2 text-black">Boutique</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ path('app_contact') }}" class="nav-link px-2 text-black">Contact</a>
-                    </li>
-                </ul>
-                <ul class="nav justify-content-center list-unstyled d-flex border-bottom pb-3 mb-3 fs-1">
-                    <li class="mx-3">
-                        <a class="text-black" target="_blank" href="#">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li class="mx-3">
-                        <a class="text-black" target="_blank" href="https://www.instagram.com/fredmauve/">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="mx-3">
-                        <a class="text-black" target="_blank" href="https://www.facebook.com/people/Fred-Mauve-Artiste/100064602257294/">
-                            <i class="fa-brands fa-facebook"></i>
-                        </a>
-                    </li>
-                </ul>
-                <p class="text-center">© 2023 Fred Mauve. Tous droits réservés.</p>
-            </div>
-        </footer>
-
+        {% include "_partials/_footer.html.twig" %}
 
         {% block javascripts %}{% endblock %}
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
