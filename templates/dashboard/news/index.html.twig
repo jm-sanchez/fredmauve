@@ -4,7 +4,29 @@
 {% block body %}
 {{ parent() }}
     <h1 class = "text-center mt-5">Gérer les actualités</h1>
-    {{dump(news)}}
+        <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-2">Titre</th>
+                    <th scope="col" class="col-3">Description</th>
+                    <th scope="col" class="col-3">Média</th>
+                    <th scope="col" class="col-2">Date de création</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for actu in news %}
+                <tr>
+                    <td>{{ actu.title }}</td>
+                    <td>{{ actu.description }}</td>
+                    <td><img src="{{ asset('assets/media/images/boxer.png') }}" alt="" width="100"></td>
+                    {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
+                    <td>{{ actu.createdAt|date('d/m/Y') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 {% block sidebar %}

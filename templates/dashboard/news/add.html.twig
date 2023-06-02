@@ -5,20 +5,20 @@
 {% block body %}
     <h1 class = "text-center mt-5">Ajouter une actualité</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(newsForm) }}
     <div class="d-flex flex-column align-items-center text-center">
     <div class="my-3 w-75">
-    {{ form_row(form.title) }}
+    {{ form_row(newsForm.title) }}
     </div>
     <div class="my-3 w-75">
-    {{ form_row(form.description) }}
+    {{ form_row(newsForm.description) }}
     </div>
     <div class="my-3 w-75">
-    {{ form_row(form.media) }}
+    {{ form_row(newsForm.media) }}
     </div>
     <div class="my-3 w-75">
-    {{ form_row(form.ajouter) }}
+    {{ form_row(newsForm.ajouter) }}
     </div>
 <div>
-    {{ form_end(form) }}
+    {{ form_end(newsForm) }}
 {% endblock %}

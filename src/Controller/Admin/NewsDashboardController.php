@@ -34,9 +34,7 @@ class NewsDashboardController extends AbstractController
     public function addNews(NewsRepository $newsRepository, Request $request, AdminRepository $adminRepository, EntityManagerInterface $em): Response
     {
         $news = new News;
-
         $form = $this->createForm(NewsType::class, $news);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -56,7 +54,9 @@ class NewsDashboardController extends AbstractController
         }
 
         return $this->render('dashboard/news/add.html.twig', [
-            'form' => $form->createView()
+            'newsForm' => $form->createView()
         ]);
     }
+
+
 }
