@@ -3,29 +3,52 @@
 {% block title %}Accueil - Fred Mauve{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('dist/assets/css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 {% endblock %}
 
 {% block body %}
 
-<main class="container-xxl px-5">
+<main class="container-fluid px-5">
     <h1 class="text-center my-5">Artiste - Illustrateur</h1>
     <div class="row">
-        <section class="col-lg-6 d-flex justify-content-center">
-            <figure>
-                <img class="img-fluid shadow-lg" src="{{ asset('dist/assets/media/images/prixAralya.jpg') }}" alt="">
-                <figcaption class = "text-end mt-2">Prix Arayla 2022 - Sans titre – Acrylique et stylo bille – 100×100 cm</figcaption>
-            </figure>
-        </section>
-        {# Phrase de l'artiste #}
-        <section class="col-lg-6 py-4 p-sm-5 p-lg-5 my-3 fs-2 d-flex align-items-start">
-            <figure class="">
-                <blockquote cite="https://www.aralya.fr/les-artistes-investissent-fontenay-sous-bois/">
-                "Le stylo bille, mon arme de dénonciation massive, contre la guerre et tous les tyrans qui précipitent les populations dans un enfer sur terre !"
-                </blockquote>
-                <figcaption class="text-end">- Fred Mauve</figcaption>
-            </figure>
-        </section>
+        <a href="{{ path('app_works') }}">
+            <section class="linkSection bg-galerie">
+                    <h2 class="tabs">Galerie</h2>
+            </section>
+        </a>
+        <a href="{{ path('app_about') }}">
+            <section class="linkSection bg-about">
+                <h2 class="tabs">À propos</h2>
+            </section>
+        </a>
+        <a href="{{ path('app_news') }}">
+            <section class="linkSection bg-news">
+                <h2 class="tabs">Actualités</h2>
+            </section>
+        </a>
+       <a href="{{ path('app_shop') }}">
+            <section class="linkSection bg-shop">
+                <h2 class="tabs">Boutique</h2>
+            </section>
+        </a>
+        <a href="{{ path('app_contact') }}">
+            <section class="linkSection bg-contact">
+                <h2 class="tabs">Contact</h2>
+            </section>
+        </a>
     </div>
 </main>
 {% endblock %}
+
+{# <section class="galerieSection position-relative text-center col-12">
+            <a href="{{ path('app_works') }}">
+                <img class="img-fluid overlay" src="{{ asset('assets/media/images/moustacheb.jpeg') }}" alt="Astronaute qui marche dans la rue" width="100%">
+                <h2 class="tabs position-absolute top-50 start-50 translate-middle text-light">Galerie</h2>
+            </a>
+        </section>
+        <section class="aboutSection position-relative text-center my-5 col-12">
+            <a href="{{ path('app_about') }}">
+                <img class="img-fluid" src="{{ asset('assets/media/images/monsieur.png') }}" alt="Astronaute qui marche dans la rue">
+                <h2 class="tabs position-absolute top-50 start-50 translate-middle text-light">À propos</h2>
+            </a>
+        </section> #}
