@@ -1,10 +1,14 @@
 {% extends 'dashboard/index.html.twig' %}
 
+{% block title %}Gérer les actualités{% endblock %}
+
 
 {% block body %}
+{% block pageTitle %}{% endblock %}
 {{ parent() }}
     <h1 class = "text-center mt-5">Gérer les actualités</h1>
-        <div class="container">
+    <a class="btn btn-success" href="{{ path('admin_news_add') }}" role="button">Ajouter une actualité</a>
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
@@ -29,5 +33,3 @@
     </div>
 {% endblock %}
 
-{% block sidebar %}
-{% endblock %}

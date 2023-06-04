@@ -1,8 +1,11 @@
 {% extends 'dashboard/index.html.twig' %}
 
 {% block title %}Ajout d'actualité{% endblock %}
-{% block content %} {{ parent('content')}} {% endblock %}
+
+
 {% block body %}
+{% block pageTitle %}{% endblock %}
+    {{ parent()}}
     <h1 class = "text-center mt-5">Ajouter une actualité</h1>
 
     {{ form_start(newsForm) }}
