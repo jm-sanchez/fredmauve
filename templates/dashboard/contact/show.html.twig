@@ -1,0 +1,60 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Affichage des messages{% endblock %}
+
+
+{% block body %}
+{% block pageTitle %}{% endblock %}
+{{ parent() }}
+    <h1 class = "text-center mt-5">Affichage du message</h1>
+    <a class="btn btn-success" href="{{ path('admin_contact_home') }}" role="button">Retourner à la liste des messages</a>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-2">Nom</th>
+                    <th scope="col" class="col-2">Email</th>
+                    <th scope="col" class="col-3">Sujet</th>
+                    <th scope="col" class="col-3">Message</th>
+                    <th scope="col" class="col-2">Date de création</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.subject }}</td>
+                    <td>{{ contact.message }}</td>
+                    {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
+                    <td>{{ contact.createdAt|date('d/m/Y') }}</td>
+                    <td class="text-center">
+                        <a type="button" href="#" data-id="{{ contact.id }}" data-name="{{ contact.name }}" class="btn btn-danger deleteContactBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer un message</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Voulez-vous vraiment supprimer le message
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <a type="button" class="btn btn-primary">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/contactDashboard.js')}}"></script>
+{% endblock %}

@@ -8,6 +8,7 @@
 {{ parent() }}
     <h1 class = "text-center mt-5">Gérer les actualités</h1>
     <a class="btn btn-success" href="{{ path('admin_news_add') }}" role="button">Ajouter une actualité</a>
+    <a class="btn btn-success" href="{{ path('admin_news_home') }}" role="button">Retourner à la liste des actualités</a>
     <div class="container">
         <table class="table">
             <thead>
@@ -19,24 +20,19 @@
                 </tr>
             </thead>
             <tbody>
-                {% for actu in news %}
                 <tr>
-                    <td>{{ actu.title }}</td>
-                    <td>{{ actu.description }}</td>
-                    <td><img src="{{ asset('assets/media/images/' ~ actu.media) }}" alt="" width="100"></td>
+                    <td>{{ news.title }}</td>
+                    <td>{{ news.description }}</td>
+                    <td><img src="{{ asset('assets/media/images/' ~ news.media) }}" alt="" width="100"></td>
                     {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
-                    <td>{{ actu.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ news.createdAt|date('d/m/Y') }}</td>
                     <td class="text-center">
-                        <a href="{{ path("admin_news_show", { id: actu.id}) }}" class="btn btn-info">Afficher les détails</a>
+                        <a href="{{ path("admin_news_update", { id: news.id}) }}" class="btn btn-primary">Modifier</a>
                     </td>
                     <td class="text-center">
-                        <a href="{{ path("admin_news_update", { id: actu.id}) }}" class="btn btn-primary">Modifier</a>
-                    </td>
-                    <td class="text-center">
-                        <a type="button" href="#" data-id="{{ actu.id }}" data-title="{{ actu.title }}" class="btn btn-danger deleteNewsBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
+                        <a type="button" href="#" data-id="{{ news.id }}" data-title="{{ news.title }}" class="btn btn-danger deleteNewsBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
                     </td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -64,4 +60,3 @@
 {% block javascripts %}
     <script src="{{ asset('assets/js/newsDashboard.js')}}"></script>
 {% endblock %}
-

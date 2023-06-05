@@ -1,39 +1,37 @@
 {% extends 'dashboard/index.html.twig' %}
 
-{% block title %}Gérer les actualités{% endblock %}
+{% block title %}Gérer les messages{% endblock %}
 
 
 {% block body %}
 {% block pageTitle %}{% endblock %}
 {{ parent() }}
-    <h1 class = "text-center mt-5">Gérer les actualités</h1>
-    <a class="btn btn-success" href="{{ path('admin_news_add') }}" role="button">Ajouter une actualité</a>
+    <h1 class = "text-center mt-5">Gérer les messages</h1>
     <div class="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="col-2">Titre</th>
-                    <th scope="col" class="col-3">Description</th>
-                    <th scope="col" class="col-3">Média</th>
+                    <th scope="col" class="col-2">Nom</th>
+                    <th scope="col" class="col-2">Email</th>
+                    <th scope="col" class="col-3">Sujet</th>
+                    <th scope="col" class="col-3">Message</th>
                     <th scope="col" class="col-2">Date de création</th>
                 </tr>
             </thead>
             <tbody>
-                {% for actu in news %}
+                {% for message in contact %}
                 <tr>
-                    <td>{{ actu.title }}</td>
-                    <td>{{ actu.description }}</td>
-                    <td><img src="{{ asset('assets/media/images/' ~ actu.media) }}" alt="" width="100"></td>
+                    <td>{{ message.name }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.message }}</td>
                     {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
-                    <td>{{ actu.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ message.createdAt|date('d/m/Y') }}</td>
                     <td class="text-center">
-                        <a href="{{ path("admin_news_show", { id: actu.id}) }}" class="btn btn-info">Afficher les détails</a>
+                        <a href="{{ path("admin_contact_show", { id: message.id}) }}" class="btn btn-info">Afficher les détails</a>
                     </td>
                     <td class="text-center">
-                        <a href="{{ path("admin_news_update", { id: actu.id}) }}" class="btn btn-primary">Modifier</a>
-                    </td>
-                    <td class="text-center">
-                        <a type="button" href="#" data-id="{{ actu.id }}" data-title="{{ actu.title }}" class="btn btn-danger deleteNewsBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
+                        <a type="button" href="#" data-id="{{ message.id }}" data-name="{{ message.name }}" class="btn btn-danger deleteContactBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -46,11 +44,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer une actualité</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer un message</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Voulez-vous vraiment supprimer l'actualité 
+                    Voulez-vous vraiment supprimer le message
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -62,6 +60,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/newsDashboard.js')}}"></script>
+    <script src="{{ asset('assets/js/contactDashboard.js')}}"></script>
 {% endblock %}
 

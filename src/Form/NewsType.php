@@ -18,7 +18,7 @@ class NewsType extends AbstractType
             ->add('media')
             // ->add('created_at')
             // ->add('administrator')
-            ->add('ajouter', SubmitType::class)
+            // ->add('ajouter', SubmitType::class)
         ;
     }
 
