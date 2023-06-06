@@ -1,0 +1,57 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Liste des Œuvres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Technique</th>
+                <th>Format</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Image_detail</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Localisation</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Saleable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for work in works %}
+            <tr>
+                <td>{{ work.id }}</td>
+                <td>{{ work.technique }}</td>
+                <td>{{ work.format }}</td>
+                <td>{{ work.category ? work.category|join(', ') : '' }}</td>
+                <td>{{ work.title }}</td>
+                <td>{{ work.image }}</td>
+                <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td>
+                <td>{{ work.description }}</td>
+                <td>{{ work.date }}</td>
+                <td>{{ work.localisation }}</td>
+                <td>{{ work.price }}</td>
+                <td>{{ work.quantity }}</td>
+                <td>{{ work.saleable ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('admin_work_show', {'id': work.id}) }}">Afficher les détails</a>
+                    <a href="{{ path('admin_work_update', {'id': work.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">Liste vide</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_work_add') }}">Ajouter une œeuvre</a>
+{% endblock %}

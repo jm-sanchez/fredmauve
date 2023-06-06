@@ -58,7 +58,7 @@ class NewsDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/afficher/{id}", name="show")
+     * @Route("/{id}", name="show")
      */
     public function showNews(News $news): Response
     {
@@ -69,7 +69,7 @@ class NewsDashboardController extends AbstractController
 
 
     /**
-     * @Route("/modifier/{id}", name="update")
+     * @Route("/{id}/modifier", name="update")
      */
     public function updateNews(NewsRepository $newsRepository, Request $request, EntityManagerInterface $em, News $news): Response
     {
@@ -92,7 +92,7 @@ class NewsDashboardController extends AbstractController
 
 
     /**
-     * @Route("/supprimer/{id}", name="delete")
+     * @Route("/{id}/supprimer", name="delete")
      */
     public function deleteNews(NewsRepository $newsRepository, EntityManagerInterface $em, News $news): Response
     {

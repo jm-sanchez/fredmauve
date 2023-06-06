@@ -74,3 +74,9 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Ajout des méthodes delete, update et show dans newsDashboardController ainsi que les vues associées (Templates/dashboard/news/show et update)
 - Ajout des modales pour le delete du newsDashboardController avec le js associés (Le js nous a servi à transférer l'id de la news dans le modal de confirmation car si on fait le modal directement dans la boucle de création on surcharge le code)
 - Ajout des méthodes delete et show dans contactDashboardController ainsi que les vues associées, la modal et le js (copier coller des methodes newsDashboardController et modale)
+
+06-06
+- Modification de notre modèle relationnelle
+    - Création de l'entité/table Category et mise en relation de celle-ci vers l'Admin et Work.
+- Création du CRUD pour l'entité Work (Il nous reste à faire le CRUD pour l'entité Category)
+- Ajout de la propriété "slug" dans les entité Work, Category et News.

@@ -28,11 +28,6 @@ class Work
     private $format;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $category = [];
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -83,6 +78,17 @@ class Work
      */
     private $administrator;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="works")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
 
     public function getId(): ?int
     {
@@ -109,18 +115,6 @@ class Work
     public function setFormat(string $format): self
     {
         $this->format = $format;
-
-        return $this;
-    }
-
-    public function getCategory(): ?array
-    {
-        return $this->category;
-    }
-
-    public function setCategory(array $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -241,6 +235,30 @@ class Work
     public function setAdministrator(?Admin $administrator): self
     {
         $this->administrator = $administrator;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

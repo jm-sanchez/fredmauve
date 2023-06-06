@@ -27,7 +27,7 @@ class ContactDashboardController extends AbstractController
 
 
     /**
-     * @Route("/afficher/{id}", name="show")
+     * @Route("/{id}", name="show")
      */
     public function showContact(Contact $contact): Response
     {
@@ -39,7 +39,7 @@ class ContactDashboardController extends AbstractController
 
 
     /**
-     * @Route("/supprimer/{id}", name="delete")
+     * @Route("/{id}/supprimer", name="delete")
      */
     public function deleteContact(ContactRepository $contactRepository, Contact $contact, EntityManagerInterface $em): Response
     {

@@ -53,12 +53,18 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $contacts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="administrator")
+     */
+    private $categories;
+
 
     public function __construct()
     {
         $this->work = new ArrayCollection();
         $this->news = new ArrayCollection();
         $this->contacts = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,6 +218,36 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($contact->getAdministrator() === $this) {
                 $contact->setAdministrator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setAdministrator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getAdministrator() === $this) {
+                $category->setAdministrator(null);
             }
         }
 

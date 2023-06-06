@@ -1,0 +1,13 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Modification des Œuvres{% endblock %}
+
+{% block body %}
+    <h1>Modification des Œuvres</h1>
+
+    {{ include('work_dashboard/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_work_home') }}">Retour à la liste</a>
+
+    {{ include('work_dashboard/_delete_form.html.twig') }}
+{% endblock %}
