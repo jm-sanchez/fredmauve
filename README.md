@@ -80,3 +80,4 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
     - Création de l'entité/table Category et mise en relation de celle-ci vers l'Admin et Work.
 - Création du CRUD pour l'entité Work (Il nous reste à faire le CRUD pour l'entité Category)
 - Ajout de la propriété "slug" dans les entité Work, Category et News.
+- Plusieurs corrections et quelques chagements dans les fichiers css (mis en place des éffets de "hover", taille de police) et dans les fichiers html de la base, du home et du contact.

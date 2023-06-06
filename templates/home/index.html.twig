@@ -9,35 +9,36 @@
 {% block body %}
 
 <main class="container-fluid px-5">
-    <h1 class="text-center my-5">Artiste - Illustrateur</h1>
-    <div class="row">
-        <a href="{{ path('app_works') }}">
-            <section class="linkSection bg-galerie">
-                    <h2 class="tabs">Galerie</h2>
-            </section>
-        </a>
-        <a href="{{ path('app_about') }}">
-            <section class="linkSection bg-about">
-                <h2 class="tabs">À propos</h2>
-            </section>
-        </a>
-        <a href="{{ path('app_news') }}">
-            <section class="linkSection bg-news">
-                <h2 class="tabs">Actualités</h2>
-            </section>
-        </a>
-       <a href="{{ path('app_shop') }}">
-            <section class="linkSection bg-shop">
-                <h2 class="tabs">Boutique</h2>
-            </section>
-        </a>
-        <a href="{{ path('app_contact') }}">
-            <section class="linkSection bg-contact">
-                <h2 class="tabs">Contact</h2>
-            </section>
-        </a>
-    </div>
+	<h1 class="text-center my-5">Artiste - Illustrateur</h1>
+	<div class="row">
+		<section class="linkSection bg-galerie">
+			<a href="{{ path('app_works') }}">
+				<h2 class="tabs">Galerie</h2>
+			</a>
+		</section>
+		<section class="linkSection bg-about">
+			<a href="{{ path('app_about') }}">
+				<h2 class="tabs">À propos</h2>
+			</a>
+		</section>
+		<section class="linkSection bg-news">
+			<a href="{{ path('app_news') }}">
+				<h2 class="tabs">Actualités</h2>
+			</a>
+		</section>
+		<section class="linkSection bg-shop">
+			<a href="{{ path('app_shop') }}">
+				<h2 class="tabs">Boutique</h2>
+			</a>
+		</section>
+		<section class="linkSection bg-contact">
+			<a href="{{ path('app_contact') }}">
+				<h2 class="tabs">Contact</h2>
+			</a>
+		</section>
+	</div>
 </main>
+
 {% endblock %}
 
 {# <section class="galerieSection position-relative text-center col-12">

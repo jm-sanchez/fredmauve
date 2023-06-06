@@ -14,7 +14,7 @@ header {
     align-items: center;
 }
 header section h1 {
-    font-size: 3em;
+    font-size: 5em;
 }
 nav {
     margin: 10px;
@@ -32,26 +32,11 @@ nav .menuItems li a {
     text-decoration: none;
     color: #000000;
     font-size: 1.2em;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     position: relative;
 }
-nav .menuItems li a::before {
-    content: attr(data-item);
-    transition: 0.3s;
-    font-weight: 500;
-    position: absolute;
-    top: 1;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 0;
-    overflow: hidden;
+nav .menuItems li a:hover {
+    color: #787878;
+    transition: all 0.2s ease-in-out;
+    position: relative;
 }
-
-/* Effet sur les lien */
-nav .menuItems li a:hover::before {
-    width: 100%;
-    transition: all 0.3s ease-in-out;
-    color: black;
-}
-

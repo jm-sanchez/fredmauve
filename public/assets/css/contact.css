@@ -1,15 +1,18 @@
 h1 {
     font-size: 3.5rem;
 }
-
 .fa-facebook:hover {
     text-shadow: #3b5998 1px 0 10px;
+    transition: all 0.15s ease-in-out;
 }
-
 .fa-instagram:hover {
     text-shadow: #E4405F 1px 0 10px;
+    transition: all 0.15s ease-in-out;
 }
-
+.fa-linkedin:hover {
+    text-shadow: #0e76a8 1px 0 10px;
+    transition: all 0.15s ease-in-out;
+}
 .outline:focus {
     outline: 2px outset #ffffff;
     box-shadow: 3px 2px 15px #818181;

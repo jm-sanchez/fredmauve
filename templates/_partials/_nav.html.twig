@@ -1,22 +1,22 @@
 <nav>
     <ul class="menuItems">
         <li>
-            <a href="{{ path('app_home') }}" data-item='Accueil'>Accueil</a>
+            <a href="{{ path('app_home') }}">Accueil</a>
         </li>
         <li>
-            <a href="{{ path('app_about') }}" data-item='Biographie'>Biographie</a>
+            <a href="{{ path('app_about') }}">Biographie</a>
         </li>
         <li>
-            <a href="{{ path('app_works') }}" data-item='Œuvres'>Œuvres</a>
+            <a href="{{ path('app_works') }}">Œuvres</a>
         </li>
         <li>
-            <a href="{{ path('app_news') }}" data-item='Actualités'>Actualités</a>
+            <a href="{{ path('app_news') }}">Actualités</a>
         </li>
         <li>
-            <a href="{{ path('app_shop') }}" data-item='Boutique'>Boutique</a>
+            <a href="{{ path('app_shop') }}">Boutique</a>
         </li>
         <li>
-            <a href="{{ path('app_contact') }}" data-item='Contact'>Contact</a>
+            <a href="{{ path('app_contact') }}">Contact</a>
         </li>
         {% if app.user %}
             <li>
@@ -28,8 +28,8 @@
 </nav>
 {% if app.user %}
     <div>
-    Vous êtes connecté {{ app.user.userIdentifier }}
+    Bienvenu {{ app.user.userIdentifier }}
     <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
 {% else %}
-    <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Se connecter</a>
+    <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Connexion</a>
 {% endif %}
