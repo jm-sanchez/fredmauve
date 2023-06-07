@@ -81,3 +81,12 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Création du CRUD pour l'entité Work (Il nous reste à faire le CRUD pour l'entité Category)
 - Ajout de la propriété "slug" dans les entité Work, Category et News.
 - Plusieurs corrections et quelques chagements dans les fichiers css (mis en place des éffets de "hover", taille de police) et dans les fichiers html de la base, du home et du contact.
+
+07/06
+- Création du CRUD pour l'entité Category. On a mis en place la vue et on a corrigé les routes.
+- Correction des erreurs de la vue du CRUD Work (relation avec categorie)
+- On a remplacé le persist et le flush par la méthode "add" dans le NewsDashboardController.
+- Modification de la route de la modale dans les fichiers "newsDashboard.js" et "contactDashboard.js".
+- A FAIRE : 
+    - création des modales pour les CRUDs Category et Work
+    - Gérer le téléchargement de l'image et image-détail pour l'entité Work et News.

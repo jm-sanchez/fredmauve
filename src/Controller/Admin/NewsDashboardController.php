@@ -23,7 +23,7 @@ class NewsDashboardController extends AbstractController
      */
     public function index(NewsRepository $newsRepository): Response
     {
-        return $this->render('dashboard/news/index.html.twig', [
+        return $this->render('dashboard/news_dashboard/index.html.twig', [
             'news' => $newsRepository->findAll(),
         ]);
     }
@@ -31,28 +31,30 @@ class NewsDashboardController extends AbstractController
     /**
      * @Route("/ajout", name="add")
      */
-    public function addNews(NewsRepository $newsRepository, Request $request, AdminRepository $adminRepository, EntityManagerInterface $em): Response
+    public function addNews(NewsRepository $newsRepository, Request $request, AdminRepository $adminRepository): Response
     {
         $news = new News;
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $newsRepository->add($news);
-            // $em = $this->getDoctrine()->getManager();
+            $admin = $adminRepository->findOneBy(["id" => "2"]);
+            $news->setAdministrator($admin);
             $timezone = new DateTimeZone('Europe/Paris');
             $date = new \DateTime("now", $timezone);
             $news->setCreatedAt($date);
-            $admin = $adminRepository->findOneBy(["id" => "2"]);
-            $news->setAdministrator($admin);
+            // La méthode "add" est l'équivalent de persist et flush (elle se trouve dans le NewsRepository)
+            // Attention, le 'true' est nécessaire pour que le flush se fasse.
+            $newsRepository->add($news, true);
+            // $em = $this->getDoctrine()->getManager();
 
-            $em->persist($news);
-            $em->flush();
+            // $em->persist($news);
+            // $em->flush();
 
             return $this->redirectToRoute('admin_news_home');
         }
 
-        return $this->render('dashboard/news/add.html.twig', [
+        return $this->render('dashboard/news_dashboard/add.html.twig', [
             'newsForm' => $form->createView()
         ]);
     }
@@ -62,7 +64,7 @@ class NewsDashboardController extends AbstractController
      */
     public function showNews(News $news): Response
     {
-        return $this->render('dashboard/news/show.html.twig', [
+        return $this->render('dashboard/news_dashboard/show.html.twig', [
             'news' => $news
         ]);
     }
@@ -71,21 +73,21 @@ class NewsDashboardController extends AbstractController
     /**
      * @Route("/{id}/modifier", name="update")
      */
-    public function updateNews(NewsRepository $newsRepository, Request $request, EntityManagerInterface $em, News $news): Response
+    public function updateNews(NewsRepository $newsRepository, Request $request, News $news): Response
     {
 
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $newsRepository->add($news);
+            $newsRepository->add($news, true);
 
-            $em->persist($news);
-            $em->flush();
+            // $em->persist($news);
+            // $em->flush();
 
             return $this->redirectToRoute('admin_news_home');
         }
-        return $this->render('dashboard/news/update.html.twig', [
+        return $this->render('dashboard/news_dashboard/update.html.twig', [
             'newsForm' => $form->createView()
         ]);
     }
@@ -94,13 +96,13 @@ class NewsDashboardController extends AbstractController
     /**
      * @Route("/{id}/supprimer", name="delete")
      */
-    public function deleteNews(NewsRepository $newsRepository, EntityManagerInterface $em, News $news): Response
+    public function deleteNews(NewsRepository $newsRepository, News $news): Response
     {
 
-            $newsRepository->remove($news);
+            $newsRepository->remove($news, true);
 
-            $em->remove($news);
-            $em->flush();
+            // $em->remove($news);
+            // $em->flush();
 
             return $this->redirectToRoute('admin_news_home');
 

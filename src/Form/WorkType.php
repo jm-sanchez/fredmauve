@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Work;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
@@ -16,21 +18,20 @@ class WorkType extends AbstractType
         $builder
             ->add('technique')
             ->add('format')
-            ->add('category', ChoiceType::class, [
-                'choices' => [
-                    'Art' => 1,
-                    'Illustration' => 2,
-                ]
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
             ])
             ->add('title')
             ->add('image')
-            ->add('image_detail')
+            // ->add('image_detail')
             ->add('description')
             ->add('date')
             ->add('localisation')
             ->add('price')
             ->add('quantity')
             ->add('saleable')
+            ->add('slug')
             // ->add('administrator')
         ;
     }

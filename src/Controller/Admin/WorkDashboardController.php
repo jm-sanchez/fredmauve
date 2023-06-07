@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Work;
 use App\Form\WorkType;
+use App\Repository\AdminRepository;
 use App\Repository\WorkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,27 +24,29 @@ class WorkDashboardController extends AbstractController
     }
 
     #[Route('/ajout', name: 'admin_work_add', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function addWork(Request $request, EntityManagerInterface $entityManager, AdminRepository $adminRepository): Response
     {
         $work = new Work();
         $form = $this->createForm(WorkType::class, $work);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $admin = $adminRepository->findOneBy(["id" => "2"]);
+            $work->setAdministrator($admin);
             $entityManager->persist($work);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dashboard/work_dashboard/new.html.twig', [
+        return $this->renderForm('dashboard/work_dashboard/add.html.twig', [
             'work' => $work,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}', name: 'admin_work_show', methods: ['GET'])]
-    public function show(Work $work): Response
+    public function showWork(Work $work): Response
     {
         return $this->render('dashboard/work_dashboard/show.html.twig', [
             'work' => $work,
@@ -51,7 +54,7 @@ class WorkDashboardController extends AbstractController
     }
 
     #[Route('/{id}/modifier', name: 'admin_work_update', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Work $work, EntityManagerInterface $entityManager): Response
+    public function updateWork(Request $request, Work $work, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(WorkType::class, $work);
         $form->handleRequest($request);
@@ -62,14 +65,14 @@ class WorkDashboardController extends AbstractController
             return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dashboard/work_dashboard/edit.html.twig', [
+        return $this->renderForm('dashboard/work_dashboard/update.html.twig', [
             'work' => $work,
             'form' => $form,
         ]);
     }
 
     #[Route('/{id}/supprimer', name: 'admin_work_delete', methods: ['POST'])]
-    public function delete(Request $request, Work $work, EntityManagerInterface $entityManager): Response
+    public function deleteWork(Request $request, Work $work, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$work->getId(), $request->request->get('_token'))) {
             $entityManager->remove($work);

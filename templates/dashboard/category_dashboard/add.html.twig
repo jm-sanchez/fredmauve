@@ -1,0 +1,11 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Ajout de Categorie{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une categorie</h1>
+
+    {{ include('dashboard/category_dashboard/_form.html.twig') }}
+
+    <a href="{{ path('admin_category_home') }}">Retour à la liste</a>
+{% endblock %}

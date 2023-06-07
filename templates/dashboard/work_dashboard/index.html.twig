@@ -3,7 +3,11 @@
 {% block title %}Œuvres{% endblock %}
 
 {% block body %}
+{{ parent() }}
     <h1>Liste des Œuvres</h1>
+
+    <a class="btn btn-success" href="{{ path('admin_work_add') }}">Ajouter une œeuvre</a>
+    <a class="btn btn-primary" href="{{ path('admin_category_home') }}">Liste de categories</a>
 
     <table class="table">
         <thead>
@@ -30,7 +34,7 @@
                 <td>{{ work.id }}</td>
                 <td>{{ work.technique }}</td>
                 <td>{{ work.format }}</td>
-                <td>{{ work.category ? work.category|join(', ') : '' }}</td>
+                <td>{{ work.category.name }}</td>
                 <td>{{ work.title }}</td>
                 <td>{{ work.image }}</td>
                 <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td>
@@ -53,5 +57,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_work_add') }}">Ajouter une œeuvre</a>
 {% endblock %}

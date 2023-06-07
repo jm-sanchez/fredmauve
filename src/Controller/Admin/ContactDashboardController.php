@@ -19,7 +19,7 @@ class ContactDashboardController extends AbstractController
      */
     public function index(ContactRepository $contactRepository): Response
     {
-        return $this->render('dashboard/contact/index.html.twig', [
+        return $this->render('dashboard/contact_dashboard/index.html.twig', [
             'contact' => $contactRepository->findAll(),
         ]);
     }
@@ -31,7 +31,7 @@ class ContactDashboardController extends AbstractController
      */
     public function showContact(Contact $contact): Response
     {
-        return $this->render('dashboard/contact/show.html.twig', [
+        return $this->render('dashboard/contact_dashboard/show.html.twig', [
             'contact' => $contact
         ]);
     }
