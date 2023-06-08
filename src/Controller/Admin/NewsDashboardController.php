@@ -38,7 +38,7 @@ class NewsDashboardController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $admin = $adminRepository->findOneBy(["id" => "2"]);
+            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
             $news->setAdministrator($admin);
             $timezone = new DateTimeZone('Europe/Paris');
             $date = new \DateTime("now", $timezone);

@@ -30,7 +30,7 @@ class CategoryDashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $admin = $adminRepository->findOneBy(["id" => "2"]);
+            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
             $category->setAdministrator($admin);
             $categoryRepository->add($category, true);
             return $this->redirectToRoute('admin_category_home', [], Response::HTTP_SEE_OTHER);

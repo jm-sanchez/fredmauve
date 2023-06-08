@@ -87,6 +87,9 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Correction des erreurs de la vue du CRUD Work (relation avec categorie)
 - On a remplacé le persist et le flush par la méthode "add" dans le NewsDashboardController.
 - Modification de la route de la modale dans les fichiers "newsDashboard.js" et "contactDashboard.js".
-- A FAIRE : 
+- A FAIRE :
     - création des modales pour les CRUDs Category et Work
     - Gérer le téléchargement de l'image et image-détail pour l'entité Work et News.
+
+08/06
+- Changement de la vérification de l'id admin en vérification role_admin dans ContactController, WorkDashboardController, NewsDashboardController et CategoryDashboardController

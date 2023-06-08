@@ -31,7 +31,7 @@ class WorkDashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $admin = $adminRepository->findOneBy(["id" => "2"]);
+            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
             $work->setAdministrator($admin);
             $entityManager->persist($work);
             $entityManager->flush();
