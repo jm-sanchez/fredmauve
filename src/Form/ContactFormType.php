@@ -20,7 +20,7 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control outline',
+                    'class' => 'form-control outline my-3',
                     'placeholder' => 'Votre nom...',
                 ]
             ])
@@ -28,7 +28,7 @@ class ContactFormType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control outline',
+                    'class' => 'form-control outline my-3',
                     'placeholder' => 'Votre email...',
                 ]
             ])
@@ -36,7 +36,7 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control outline',
+                    'class' => 'form-control outline my-3',
                     'placeholder' => 'Sujet de votre message...',
                 ]
             ])
@@ -45,14 +45,14 @@ class ContactFormType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'rows' => '5',
-                    'class' => 'form-control outline',
+                    'class' => 'form-control outline my-3',
                     'placeholder' => 'Votre message ou commentaire...',
                 ]
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-outline-light btn-lg'
+                    'class' => 'btn btn-outline-dark btn-lg'
                 ]
 
             ])

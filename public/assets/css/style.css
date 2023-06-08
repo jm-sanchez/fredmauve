@@ -16,12 +16,13 @@ header {
 header section h1 {
     font-size: 5em;
 }
-nav {
+/* nav {
     margin: 10px;
     padding: 5px;
-}
+} */
 nav .menuItems {
     padding: 0;
+    margin: 0;
     list-style: none;
     display: flex;
 }

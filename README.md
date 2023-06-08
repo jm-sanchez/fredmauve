@@ -93,3 +93,5 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 
 08/06
 - Changement de la vérification de l'id admin en vérification role_admin dans ContactController, WorkDashboardController, NewsDashboardController et CategoryDashboardController
+- Suppression de la méthode et de la vue "success" dans Contact
+- Modification de la vue de la page Contact

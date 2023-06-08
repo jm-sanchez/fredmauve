@@ -19,16 +19,16 @@
             <a href="{{ path('app_contact') }}">Contact</a>
         </li>
         {% if app.user %}
-            <li>
-                <a href="{{ path('admin_dashboard') }}" data-item='Dashboard'>Dashboard</a>
-            </li>
+        <li>
+            <a href="{{ path('admin_dashboard') }}" data-item='Dashboard'>Dashboard</a>
+        </li>
         {% endif %}
     </ul>
     </ul>
 </nav>
 {% if app.user %}
     <div>
-    Bienvenu {{ app.user.userIdentifier }}
+    Bienvenue {{ app.user.userIdentifier }}
     <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
 {% else %}
     <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Connexion</a>
