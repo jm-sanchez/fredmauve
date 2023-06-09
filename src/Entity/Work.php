@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WorkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,16 +33,6 @@ class Work
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $image_detail;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -89,6 +81,16 @@ class Work
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="work", orphanRemoval=true, cascade={"persist"})
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -127,30 +129,6 @@ class Work
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getImageDetail(): ?string
-    {
-        return $this->image_detail;
-    }
-
-    public function setImageDetail(?string $image_detail): self
-    {
-        $this->image_detail = $image_detail;
 
         return $this;
     }
@@ -259,6 +237,36 @@ class Work
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setWork($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getWork() === $this) {
+                $image->setWork(null);
+            }
+        }
 
         return $this;
     }

@@ -30,7 +30,7 @@ class CategoryDashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
+            $admin = $adminRepository->findOneBy(["email" => "admin@admin.fr"]);
             $category->setAdministrator($admin);
             $categoryRepository->add($category, true);
             return $this->redirectToRoute('admin_category_home', [], Response::HTTP_SEE_OTHER);
@@ -38,17 +38,18 @@ class CategoryDashboardController extends AbstractController
 
         return $this->renderForm('dashboard/category_dashboard/add.html.twig', [
             'category' => $category,
-            'form' => $form,
+            'categoryForm' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_category_show', methods: ['GET'])]
-    public function showCategory(Category $category): Response
-    {
-        return $this->render('dashboard/category_dashboard/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
+    // pas besoin de show pour le catégorie
+    // #[Route('/{id}', name: 'admin_category_show', methods: ['GET'])]
+    // public function showCategory(Category $category): Response
+    // {
+    //     return $this->render('dashboard/category_dashboard/show.html.twig', [
+    //         'category' => $category,
+    //     ]);
+    // }
 
     #[Route('/{id}/modifier', name: 'admin_category_update', methods: ['GET', 'POST'])]
     public function updateCategory(Request $request, Category $category, CategoryRepository $categoryRepository): Response

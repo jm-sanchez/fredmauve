@@ -2,10 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Image;
 use App\Entity\Work;
 use App\Form\WorkType;
 use App\Repository\AdminRepository;
 use App\Repository\WorkRepository;
+use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,14 +26,28 @@ class WorkDashboardController extends AbstractController
     }
 
     #[Route('/ajout', name: 'admin_work_add', methods: ['GET', 'POST'])]
-    public function addWork(Request $request, EntityManagerInterface $entityManager, AdminRepository $adminRepository): Response
+    public function addWork(Request $request, EntityManagerInterface $entityManager, AdminRepository $adminRepository, PictureService $pictureService): Response
     {
         $work = new Work();
         $form = $this->createForm(WorkType::class, $work);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
+            // On récupère les images
+            $images = $form->get('images')->getData();
+
+            foreach($images as $image){
+                // On définit le dossier de destination
+                $folder = 'works';
+
+                // On appelle le service d'ajout d'image
+                $fichier = $pictureService->add($image, $folder, 300, 300);
+
+                $img = new Image();
+                $img->setName($fichier);
+                $work->addImage($img);
+            }
+            $admin = $adminRepository->findOneBy(["email" => "admin@admin.fr"]);
             $work->setAdministrator($admin);
             $entityManager->persist($work);
             $entityManager->flush();
@@ -41,7 +57,7 @@ class WorkDashboardController extends AbstractController
 
         return $this->renderForm('dashboard/work_dashboard/add.html.twig', [
             'work' => $work,
-            'form' => $form,
+            'workForm' => $form,
         ]);
     }
 

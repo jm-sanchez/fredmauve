@@ -1,4 +1,15 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_start(workForm) }}
+    {{ form_row(workForm.technique) }}
+    {{ form_row(workForm.format) }}
+    {{ form_row(workForm.category) }}
+    {{ form_row(workForm.title) }}
+    {{ form_row(workForm.images) }}
+    {{ form_row(workForm.description) }}
+    {{ form_row(workForm.date) }}
+    {{ form_row(workForm.localisation) }}
+    {{ form_row(workForm.price) }}
+    {{ form_row(workForm.quantity) }}
+    {{ form_row(workForm.saleable) }}
+    {{ form_row(workForm.slug) }}
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(workForm) }}

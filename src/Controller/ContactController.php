@@ -41,7 +41,7 @@ class ContactController extends AbstractController
             $contact->setCreatedAt($date);
 
             // Vérifier l'id de l'admin dans la bdd
-            $admin = $adminRepository->findOneBy(["roles" => '["ROLE_ADMIN"]']);
+            $admin = $adminRepository->findOneBy(["email" => "admin@admin.fr"]);
             $contact->setAdministrator($admin);
 
             $manager->persist($contact);

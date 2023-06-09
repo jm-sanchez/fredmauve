@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +24,12 @@ class WorkType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('title')
-            ->add('image')
+            ->add('images', FileType::class, [
+                // 'class' => 'form-control',
+                'label' => false,
+                'mapped' => false,
+                'multiple' => true
+            ])
             // ->add('image_detail')
             ->add('description')
             ->add('date')

@@ -17,8 +17,8 @@
                 <th>Format</th>
                 <th>Category</th>
                 <th>Title</th>
-                <th>Image</th>
-                <th>Image_detail</th>
+                {# <th>Image</th>
+                <th>Image_detail</th> #}
                 <th>Description</th>
                 <th>Date</th>
                 <th>Localisation</th>
@@ -36,8 +36,8 @@
                 <td>{{ work.format }}</td>
                 <td>{{ work.category.name }}</td>
                 <td>{{ work.title }}</td>
-                <td>{{ work.image }}</td>
-                <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td>
+                {# <td>{{ work.image }}</td>
+                <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td> #}
                 <td>{{ work.description }}</td>
                 <td>{{ work.date }}</td>
                 <td>{{ work.localisation }}</td>

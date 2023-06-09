@@ -95,3 +95,12 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Changement de la vérification de l'id admin en vérification role_admin dans ContactController, WorkDashboardController, NewsDashboardController et CategoryDashboardController
 - Suppression de la méthode et de la vue "success" dans Contact
 - Modification de la vue de la page Contact
+
+09/06
+- A ajouter: bouton delete pour les catégorie dans le dashboard
+- Changement de la vérification du role_admin en vérification email de l'admin dans ContactController, WorkDashboardController, NewsDashboardController et CategoryDashboardController
+- Création de l'entité Image et de la relation avec Work
+- Modification du twig formulaire '_form' dans work_dashboard et ajout du champ image dans le formulaire Work
+- Ajout du paramètre "image_directory" dans le fichier services.yaml
+- Création du service 'PictureService' pour enregister une image dans le dossier upload
+- Ajout de cascade={"persist"} dans la propriété image de l'entité Work (à corriger)
