@@ -27,11 +27,18 @@
                 <th>Title</th>
                 <td>{{ work.title }}</td>
             </tr>
-            {# <tr>
-                <th>Image</th>
-                <td>{{ work.image }}</td>
-            </tr>
             <tr>
+                <th>Image</th>
+                <td>
+                {% for image in work.images %}
+                    <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" width="100" height="100">
+                {% endfor %}
+                </td>
+                {# {% for img in image %}
+                <td>{{ img.name }}</td>
+                {% endfor %} #}
+            </tr>
+            {# <tr>
                 <th>Image_detail</th>
                 <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td>
             </tr> #}

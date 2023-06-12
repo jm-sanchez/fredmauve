@@ -85,10 +85,34 @@ class PictureService
         return $fichier;
     }
 
-    // public function delete(string $fichier, ?string $folder = '', ?int $width = 250, ?int $height = 250)
-    // {
-    //     if($fichier !== 'default.webp'){
-    //         $success = false;
-    //     }
-    // }
+    public function delete(string $fichier, ?string $folder = '', ?int $width = 250, ?int $height = 250)
+    {
+        // Vérification si le nom de l'image est différente à 'default.webp'
+        if($fichier !== 'default.webp'){
+            // Variable pour indiquer si la suppression fonctionne ou pas
+            $success = false;
+            $path = $this->params->get('images_directory') . $folder;
+
+            // Vérification du chemin où se trouve l'image
+            $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
+
+            // Vérification de l'existence du fichier mini
+            if(file_exists($mini)){
+                // Supprime le fichier
+                unlink($mini);
+                $success = true;
+            }
+
+            $original = $path . '/' . $fichier;
+
+            // Vérification de l'existence du fichier original
+            if(file_exists($original)){
+                unlink($original);
+                $success = true;
+            }
+            return $success;
+        }
+        // Si l'image' s'appelle 'default.webp', elle ne se supprime pas
+        return false;
+    }
 }

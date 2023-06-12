@@ -23,11 +23,6 @@ class Image
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $slug;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Work::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -46,18 +41,6 @@ class Image
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }

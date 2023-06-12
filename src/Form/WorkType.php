@@ -25,10 +25,11 @@ class WorkType extends AbstractType
             ])
             ->add('title')
             ->add('images', FileType::class, [
-                // 'class' => 'form-control',
                 'label' => false,
                 'mapped' => false,
-                'multiple' => true
+                'multiple' => true,
+                // pour vérifier le contrôl du back (message flash)
+                'required' => false,
             ])
             // ->add('image_detail')
             ->add('description')

@@ -104,3 +104,10 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Ajout du paramètre "image_directory" dans le fichier services.yaml
 - Création du service 'PictureService' pour enregister une image dans le dossier upload
 - Ajout de cascade={"persist"} dans la propriété image de l'entité Work (à corriger)
+
+12/06
+- On a ajouter le message flash dans le formulaire d'ajout d'une œuvre et on a mis la condition if dans le WorkDashboardController (à faire en Ajax pour que le formulaire reste rempli)
+- Ajout de la modification d'image dans la méthode updateWork dans WorkDashboardController. Le template est aussi fonctionnel.
+- Ajout des boutons de suppression d'image (méthode à modifier dans le WorkDashboardController)
+- Ajout de la fonction delete dans le ServicePicture
+- Ajout de la vérification et du message pour l'ajout d'image dans le WorkDashboardController dans la méthode addWork

@@ -1,15 +1,28 @@
-{{ form_start(workForm) }}
-    {{ form_row(workForm.technique) }}
-    {{ form_row(workForm.format) }}
-    {{ form_row(workForm.category) }}
-    {{ form_row(workForm.title) }}
-    {{ form_row(workForm.images) }}
-    {{ form_row(workForm.description) }}
-    {{ form_row(workForm.date) }}
-    {{ form_row(workForm.localisation) }}
-    {{ form_row(workForm.price) }}
-    {{ form_row(workForm.quantity) }}
-    {{ form_row(workForm.saleable) }}
-    {{ form_row(workForm.slug) }}
+{{ form_start(form) }}
+    {{ form_row(form.technique) }}
+    {{ form_row(form.format) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.title) }}
+    {% if app.request.attributes.get('_route') == 'admin_work_update' %}
+        {% for image in work.images %}
+            <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" width="100" height="100">
+            <a href="" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+        {% endfor %}
+    <p>Ajouter de nouvelles images :</p>
+        {{ form_row(form.images) }}
+    {% else %}
+        {{ form_row(form.images) }}
+    {% endif %}
+
+    {{ form_row(form.description) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.localisation) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.saleable) }}
+    {{ form_row(form.slug) }}
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
+    {% endfor %}
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(workForm) }}
+{{ form_end(form) }}

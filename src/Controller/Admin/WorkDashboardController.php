@@ -10,6 +10,7 @@ use App\Repository\WorkRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +37,15 @@ class WorkDashboardController extends AbstractController
             // On récupère les images
             $images = $form->get('images')->getData();
 
+            if ($images == null) {
+                // Message flash
+                $this->addFlash(
+                    'notice',
+                    'Veuillez ajouter une image !'
+                );
+                return $this->redirectToRoute('admin_work_add');
+            }
+
             foreach($images as $image){
                 // On définit le dossier de destination
                 $folder = 'works';
@@ -57,7 +67,7 @@ class WorkDashboardController extends AbstractController
 
         return $this->renderForm('dashboard/work_dashboard/add.html.twig', [
             'work' => $work,
-            'workForm' => $form,
+            'form' => $form,
         ]);
     }
 
@@ -70,12 +80,25 @@ class WorkDashboardController extends AbstractController
     }
 
     #[Route('/{id}/modifier', name: 'admin_work_update', methods: ['GET', 'POST'])]
-    public function updateWork(Request $request, Work $work, EntityManagerInterface $entityManager): Response
+    public function updateWork(Request $request, Work $work, EntityManagerInterface $entityManager, PictureService $pictureService): Response
     {
         $form = $this->createForm(WorkType::class, $work);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                // On définit le dossier de destination
+                $folder = 'works';
+
+                // On appelle le service d'ajout d'image
+                $fichier = $pictureService->add($image, $folder, 300, 300);
+
+                $img = new Image();
+                $img->setName($fichier);
+                $work->addImage($img);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
@@ -96,5 +119,15 @@ class WorkDashboardController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('image/{id}/supprimer', name: 'admin_delete_image', methods: ['DELETE'])]
+    public function deleteImage(Request $request, Image $image, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token']));
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 }
