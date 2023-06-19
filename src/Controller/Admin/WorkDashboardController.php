@@ -101,7 +101,7 @@ class WorkDashboardController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_work_update', ['id' => $work->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dashboard/work_dashboard/update.html.twig', [
@@ -111,9 +111,23 @@ class WorkDashboardController extends AbstractController
     }
 
     #[Route('/{id}/supprimer', name: 'admin_work_delete', methods: ['POST'])]
-    public function deleteWork(Request $request, Work $work, EntityManagerInterface $entityManager): Response
+    public function deleteWork(Request $request, Work $work, EntityManagerInterface $entityManager, PictureService $pictureService): Response
     {
         if ($this->isCsrfTokenValid('delete'.$work->getId(), $request->request->get('_token'))) {
+
+            $images = $work->getImages();
+
+            foreach($images as $image){
+                // On récupère le nom de l'image
+                $name = $image->getName();
+                // dump($name);
+                if ($pictureService->delete($name, 'works', 300, 300)){
+                // On supprime l'image de la base de données
+                $entityManager->remove($image);
+                $entityManager->flush();
+                }
+            }
+
             $entityManager->remove($work);
             $entityManager->flush();
         }
@@ -124,10 +138,29 @@ class WorkDashboardController extends AbstractController
     #[Route('image/{id}/supprimer', name: 'admin_delete_image', methods: ['DELETE'])]
     public function deleteImage(Request $request, Image $image, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
     {
+        // On récupère le contenu de la requête
         $data = json_decode($request->getContent(), true);
 
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token']));
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+            // Le token csrf est valide
+            // On récupère le nom de l'image
+            $name = $image->getName();
+
+            if ($pictureService->delete($name, 'works', 300, 300)){
+                // On supprime l'image de la base de données
+                $entityManager->remove($image);
+                $entityManager->flush();
+
+                return new JsonResponse(['success' => true], 200);
+            }
+            // La suppression à échoué
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
 
         return new JsonResponse(['error' => 'Token invalide'], 400);
+        // $response = new JsonResponse(array(
+        //     'route' => 
+        // ))
+        // return $this->redirectToRoute('admin_work_update', ['id' => $work->getId()], Response::HTTP_SEE_OTHER);
     }
 }

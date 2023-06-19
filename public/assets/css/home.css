@@ -32,19 +32,19 @@ h2:hover {
     justify-content: center;
 }
 .bg-galerie {
-    background-image: url("../media/images/moustacheb.jpeg");
+    background-image: url("../uploads/images/moustacheb.jpeg");
 }
 .bg-about {
-    background-image: url("../media/images/monsieur.png");
+    background-image: url("../uploads/images/monsieur.png");
 }
 .bg-news {
-    background-image: url("../media/images/crime.png");
+    background-image: url("../uploads/images/crime.png");
 }
 .bg-shop {
-    background-image: url("../media/images/manger.png");
+    background-image: url("../uploads/images/manger.png");
 }
 .bg-contact {
-    background-image: url("../media/images/mouches.png");
+    background-image: url("../uploads/images/mouches.png");
 }
 
 

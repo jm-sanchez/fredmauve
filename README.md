@@ -106,8 +106,11 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Ajout de cascade={"persist"} dans la propriété image de l'entité Work (à corriger)
 
 12/06
-- On a ajouter le message flash dans le formulaire d'ajout d'une œuvre et on a mis la condition if dans le WorkDashboardController (à faire en Ajax pour que le formulaire reste rempli)
+- On a ajouter le message flash dans le formulaire d'ajout d'une œuvre et on a mis la condition if dans le WorkDashboardController (à faire en Ajax pour que le formulaire d'ajout d'oeuvres' reste rempli en cas d'erreur)
 - Ajout de la modification d'image dans la méthode updateWork dans WorkDashboardController. Le template est aussi fonctionnel.
 - Ajout des boutons de suppression d'image (méthode à modifier dans le WorkDashboardController)
 - Ajout de la fonction delete dans le ServicePicture
 - Ajout de la vérification et du message pour l'ajout d'image dans le WorkDashboardController dans la méthode addWork
+
+19/06
+- Ajout de la suppression des images et miniatures dans la méthode de suppression d'une oeuvre (via controller workDashboard et ajax dans images.js); soucis de redirection après la suppression d'une image à corriger
