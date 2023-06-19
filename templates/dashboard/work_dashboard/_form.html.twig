@@ -6,9 +6,12 @@
 
     {# On affiche les images si on est en édition #}
     {% if app.request.attributes.get('_route') == 'admin_work_update' %}
+        <p>Images</p>
         {% for image in work.images %}
+        <div class="d-inline-flex p-1 align-items-center">
             <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" alt="Image" width="100" height="100">
             <a href="{{ path('admin_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+        </div>
         {% endfor %}
     <p>Ajouter de nouvelles images :</p>
         {{ form_row(form.images) }}

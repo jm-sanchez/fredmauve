@@ -1,5 +1,5 @@
 // sélection de tous les liens supprimer
-let links = document.querySelectorAll("[data-delete");
+let links = document.querySelectorAll("[data-delete]");
 
 // On boucle sur les liens
 for(let link of links){
