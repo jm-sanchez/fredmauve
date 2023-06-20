@@ -113,4 +113,13 @@ PROJET FRED MAUVE (ARTISTE - ILLUSTRATEUR)
 - Ajout de la vérification et du message pour l'ajout d'image dans le WorkDashboardController dans la méthode addWork
 
 19/06
-- Ajout de la suppression des images et miniatures dans la méthode de suppression d'une oeuvre (via controller workDashboard et ajax dans images.js); soucis de redirection après la suppression d'une image à corriger
+- Ajout de la suppression des images et miniatures dans la méthode de suppression d'une oeuvre (via controller workDashboard et ajax dans images.js); 
+Erreurs : 
+    Soucis de redirection après la suppression d'une image à corriger. 
+    Le formulaire disparait après la suppression d'une image dans le template update du dossier work_dashboard.
+
+20/06
+- Corrections : 
+    Soucis de redirection après la suppression d'une image corrigé (Ajout d'une condition if empty)
+    Le formulaire disparait après la suppression d'une image corrigé (l'image et le lien de suppression on été déplacés dans une div)
+- Suppression de la propriété Media de l'entité News

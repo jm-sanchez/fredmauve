@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Entity\Work;
 use App\Form\WorkType;
 use App\Repository\AdminRepository;
+use App\Repository\ImageRepository;
 use App\Repository\WorkRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -153,6 +154,7 @@ class WorkDashboardController extends AbstractController
 
                 return new JsonResponse(['success' => true], 200);
             }
+
             // La suppression à échoué
             return new JsonResponse(['error' => 'Erreur de suppression'], 400);
         }

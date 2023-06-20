@@ -28,11 +28,6 @@ class News
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $media;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -74,18 +69,6 @@ class News
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getMedia(): ?string
-    {
-        return $this->media;
-    }
-
-    public function setMedia(?string $media): self
-    {
-        $this->media = $media;
 
         return $this;
     }

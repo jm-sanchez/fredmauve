@@ -27,7 +27,12 @@
                 <td>{{ work.category.name }}</td>
                 <td>{{ work.title }}</td>
                 <td>
+                {# S'il n'y a pas d'images associées a l'œuvre #}
+                {% if work.images is empty %}
+                    <p>Aucune image à afficher. Veuillez ajouter une image.</p>
+                {% else %}
                     <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" width="100" height="100">
+                {% endif %}
                 </td>
                 <td>{{ work.localisation }}</td>
                 <td>
