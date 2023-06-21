@@ -25,20 +25,18 @@
                 {{ form_row(formContact.subject) }}
                 {{ form_row(formContact.message) }}
                 {{ form_row(formContact.button) }}
-            {{ form_end(formContact) }}
-
-            {# Message Flash #}
-            {% for message in app.flashes('notice') %}
-            <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
-            {% endfor %}
-
             {# reCAPTCHA #}
             <script>
                 function onSubmit(token) {
                     document.getElementById("recaptcha").submit();
                 }
             </script>
-            
+            {{ form_end(formContact) }}
+
+            {# Message Flash #}
+            {% for message in app.flashes('notice') %}
+            <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
+            {% endfor %}
 
         </section>
     {# Infos de contact hors le formulaire #}
