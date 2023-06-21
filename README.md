@@ -123,3 +123,6 @@ Erreurs :
     Soucis de redirection après la suppression d'une image corrigé (Ajout d'une condition if empty)
     Le formulaire disparait après la suppression d'une image corrigé (l'image et le lien de suppression on été déplacés dans une div)
 - Suppression de la propriété Media de l'entité News
+
+21/06
+- Ajout de la verification reCAPTCHA v3 pour le formulaire de contact (contact/index.html.twig et ContactFormType)

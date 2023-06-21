@@ -52,7 +52,11 @@ class ContactFormType extends AbstractType
             ->add('button', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'btn btn-outline-dark btn-lg'
+                    'class' => 'btn btn-outline-dark btn-lg g-recaptcha',
+                    // Clé reCAPTCHA juste pour tester
+                    'data-sitekey' => '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+                    'data-callback' => 'onSubmit',
+                    'data-action' => 'submit'
                 ]
 
             ])
