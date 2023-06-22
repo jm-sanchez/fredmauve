@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImageNews index{% endblock %}
+
+{% block body %}
+    <h1>ImageNews index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image_news in image_news %}
+            <tr>
+                <td>{{ image_news.id }}</td>
+                <td>{{ image_news.name }}</td>
+                <td>
+                    <a href="{{ path('app_image_news_dashboard_show', {'id': image_news.id}) }}">show</a>
+                    <a href="{{ path('app_image_news_dashboard_edit', {'id': image_news.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_image_news_dashboard_new') }}">Create new</a>
+{% endblock %}

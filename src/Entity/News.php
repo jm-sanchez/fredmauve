@@ -43,6 +43,11 @@ class News
      */
     private $slug;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ImageNews::class, mappedBy="news", cascade={"persist", "remove"})
+     */
+    private $imageNews;
+
 
     public function getId(): ?int
     {
@@ -105,6 +110,23 @@ class News
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getImageNews(): ?ImageNews
+    {
+        return $this->imageNews;
+    }
+
+    public function setImageNews(ImageNews $imageNews): self
+    {
+        // set the owning side of the relation if necessary
+        if ($imageNews->getNews() !== $this) {
+            $imageNews->setNews($this);
+        }
+
+        $this->imageNews = $imageNews;
 
         return $this;
     }

@@ -15,7 +15,7 @@
                 <tr>
                     <th scope="col" class="col-2">Titre</th>
                     <th scope="col" class="col-3">Description</th>
-                    <th scope="col" class="col-3">Média</th>
+                    <th scope="col" class="col-3">Image</th>
                     <th scope="col" class="col-2">Date de création</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ news.title }}</td>
                     <td>{{ news.description }}</td>
-                    <td><img src="{{ asset('assets/media/images/' ~ news.media) }}" alt="" width="100"></td>
+                    <td><img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ news.imageNews.name) }}" width="100" height="100"></td>
                     {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
                     <td>{{ news.createdAt|date('d/m/Y') }}</td>
                     <td class="text-center">

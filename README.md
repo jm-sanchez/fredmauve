@@ -126,3 +126,9 @@ Erreurs :
 
 21/06
 - Ajout de la verification reCAPTCHA v3 pour le formulaire de contact (contact/index.html.twig et ContactFormType)
+
+22/06
+- Création de l'entité ImageNews et du crud associé (crud à supprimer) et mise en relation avec l'entité News (OneToOne)
+- Modification des methodes show update delete de NewsDashboardController ainsi que tous les twigs associés
+ Erreur: la suppression de news ne fonctionne pas, à corriger
+- mise en commentaire des anciens boutons/formulaires pour la gestion de news dans les twigs newsDashboard (à supprimer si plus besoin)

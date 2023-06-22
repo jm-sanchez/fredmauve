@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="col" class="col-2">Titre</th>
                     <th scope="col" class="col-3">Description</th>
-                    <th scope="col" class="col-3">Média</th>
+                    <th scope="col" class="col-3">Image</th>
                     <th scope="col" class="col-2">Date de création</th>
                 </tr>
             </thead>
@@ -23,7 +23,15 @@
                 <tr>
                     <td>{{ actu.title }}</td>
                     <td>{{ actu.description }}</td>
-                    <td><img src="{{ asset('assets/media/images/' ~ actu.media) }}" alt="" width="100"></td>
+                    <td>
+                        {# S'il n'y a pas d'images associées a l'œuvre #}
+                        {% if actu.imageNews is empty %}
+                            <p>Aucune image à afficher. Veuillez ajouter une image.</p>
+                        {% else %}
+                            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ actu.imageNews.name) }}" width="100" height="100">
+                        {% endif %}
+                    </td>
+                    {# <td><img src="{{ asset('assets/uploads/images/' ~ actu.media) }}" alt="" width="100"></td> #}
                     {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
                     <td>{{ actu.createdAt|date('d/m/Y') }}</td>
                     <td class="text-center">
@@ -32,9 +40,9 @@
                     <td class="text-center">
                         <a href="{{ path("admin_news_update", { id: actu.id}) }}" class="btn btn-primary">Modifier</a>
                     </td>
-                    <td class="text-center">
+                    {# <td class="text-center">
                         <a type="button" href="#" data-id="{{ actu.id }}" data-title="{{ actu.title }}" class="btn btn-danger deleteNewsBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
-                    </td>
+                    </td> #}
                 </tr>
                 {% endfor %}
             </tbody>
@@ -42,7 +50,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {# <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -58,10 +66,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
 {% endblock %}
 
-{% block javascripts %}
+{# {% block javascripts %}
     <script src="{{ asset('assets/js/newsDashboard.js')}}"></script>
-{% endblock %}
+{% endblock %} #}
 
