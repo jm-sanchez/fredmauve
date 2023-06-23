@@ -107,12 +107,6 @@ class NewsDashboardController extends AbstractController
 
             return $this->redirectToRoute('admin_news_update', ['id' => $news->getId()], Response::HTTP_SEE_OTHER);
 
-            // $newsRepository->add($news, true);
-
-            // $em->persist($news);
-            // $em->flush();
-
-            // return $this->redirectToRoute('admin_news_home');
         }
         return $this->renderForm('dashboard/news_dashboard/update.html.twig', [
             'form' => $form,

@@ -3,6 +3,11 @@
 {% block title %}Modification des Œuvres{% endblock %}
 
 {% block body %}
+
+{# Pour que le titre "Dashboard's admin disparaisse #}
+{% block pageTitle %}{% endblock %}
+    {# pour avoir le menu du dashboard #}
+    {{ parent()}}
     <h1>Modification des Œuvres</h1>
 
     {{ include('/dashboard/work_dashboard/_form.html.twig', {'button_label': 'Update'}) }}

@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {# S'il n'a pas d'image afficher l'input d'upload d'image #}
+    {% if news.imageNews is empty %}
+        <div>
+            <p>Ajouter une nouvelle image (facultatif) :</p>
+            {{ form_row(form.images) }}
+        </div>
+    {% else %}
+        {# Sinon afficher l'image #}
+        <p>Image :</p>
+        <div class="d-inline-flex p-1 align-items-center">
+            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ news.imageNews.name) }}" alt="Image" width="100" height="100">
+            <a href="{{ path('admin_delete_image_news', {id: news.imageNews.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ news.imageNews.id) }}">Supprimer</a>
+        </div>
+        {# Et cacher l'input d'upload d'image #}
+        {% do form.images.setRendered() %}
+    {% endif %}
+{{ form_row(form.slug) }}
+
+<button class="btn btn-primary">
+	{{ button_label|default('Enregistrer') }}
+</button>
