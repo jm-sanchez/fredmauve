@@ -38,7 +38,7 @@ class CategoryDashboardController extends AbstractController
 
         return $this->renderForm('dashboard/category_dashboard/add.html.twig', [
             'category' => $category,
-            'categoryForm' => $form,
+            'form' => $form,
         ]);
     }
 

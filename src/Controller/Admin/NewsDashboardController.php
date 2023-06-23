@@ -92,20 +92,26 @@ class NewsDashboardController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             // On récupère les images
-            $image = $form->get('images')->getData();
-            // On définit le dossier de destination
-            $folder = 'news';
+            $images = $form->get('images')->getData();
+            if(isset($images) && !empty($images)){
+                // foreach($images as $image){
+                    // On définit le dossier de destination
+                    $folder = 'news';
 
-            // On appelle le service d'ajout d'image
-            $fichier = $pictureService->add($image, $folder, 300, 300);
+                    // On appelle le service d'ajout d'image
+                    $fichier = $pictureService->add($images, $folder, 300, 300);
 
-            $img = new ImageNews();
-            $img->setName($fichier);
-            $news->setImageNews($img);
+                    $img = new ImageNews();
+                    $img->setName($fichier);
+                    $news->setImageNews($img);
 
+                    $entityManager->flush();
+                // }
+    
+            }
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_news_update', ['id' => $news->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_news_home');
 
         }
         return $this->renderForm('dashboard/news_dashboard/update.html.twig', [
@@ -120,15 +126,17 @@ class NewsDashboardController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$news->getId(), $request->request->get('_token'))) {
 
-            $image = $news->getImageNews();
-
+            $images = $news->getImageNews();
+            
+            foreach($images as $image){
             // On récupère le nom de l'image
-            $name = $image->getName();
-            // dump($name);
-            if ($pictureService->delete($name, 'news', 300, 300)){
-                // On supprime l'image de la base de données
-                $entityManager->remove($image);
-                $entityManager->flush();
+                $name = $image->getName();
+                // dump($name);
+                if ($pictureService->delete($name, 'news', 300, 300)){
+                    // On supprime l'image de la base de données
+                    $entityManager->remove($image);
+                    $entityManager->flush();
+                }
             }
 
             $entityManager->remove($news);

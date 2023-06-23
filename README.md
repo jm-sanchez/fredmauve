@@ -132,3 +132,8 @@ Erreurs :
 - Modification des methodes show update delete de NewsDashboardController ainsi que tous les twigs associés
  Erreur: la suppression de news ne fonctionne pas, à corriger
 - mise en commentaire des anciens boutons/formulaires pour la gestion de news dans les twigs newsDashboard (à supprimer si plus besoin)
+
+23/06
+- Séparation du formulaire et du button de suppression dans de nouveaux fichiers. Remplacement en include _form et _delete_form
+- Modification des entités News et ImageNews (Relation OneToOne -> OneToMany). On a aussi adapté les différentes méthodes dans l'entité ImageNews et les templates (ajout des boucles for).
+- Changement de la variable twig "categoryForm" à "form"

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NewsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,10 +46,14 @@ class News
     private $slug;
 
     /**
-     * @ORM\OneToOne(targetEntity=ImageNews::class, mappedBy="news", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=ImageNews::class, mappedBy="news", orphanRemoval=true, cascade={"persist"})
      */
     private $imageNews;
 
+    public function __construct()
+    {
+        $this->imageNews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -114,21 +120,34 @@ class News
         return $this;
     }
 
-    public function getImageNews(): ?ImageNews
+    /**
+     * @return Collection<int, ImageNews>
+     */
+    public function getImageNews(): Collection
     {
         return $this->imageNews;
     }
 
     public function setImageNews(ImageNews $imageNews): self
     {
-        // set the owning side of the relation if necessary
-        if ($imageNews->getNews() !== $this) {
+        if (!$this->imageNews->contains($imageNews)) {
+            $this->imageNews[] = $imageNews;
             $imageNews->setNews($this);
         }
-
-        $this->imageNews = $imageNews;
 
         return $this;
     }
 
+    public function removeImage(ImageNews $imageNews): self
+    {
+        if ($this->imageNews->removeElement($imageNews)) {
+            // set the owning side to null (unless already changed)
+            if ($imageNews->getNews() === $this) {
+                $imageNews->setNews(null);
+            }
+        }
+
+        return $this;
+    }
 }
+

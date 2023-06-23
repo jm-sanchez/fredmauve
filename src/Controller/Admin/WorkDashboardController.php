@@ -102,7 +102,8 @@ class WorkDashboardController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_work_update', ['id' => $work->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_work_home');
+            // return $this->redirectToRoute('admin_work_update', ['id' => $work->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dashboard/work_dashboard/update.html.twig', [

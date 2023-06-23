@@ -23,7 +23,7 @@ class ImageNews
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=News::class, inversedBy="imageNews", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=News::class, inversedBy="imageNews")
      * @ORM\JoinColumn(nullable=false)
      */
     private $news;
@@ -50,7 +50,7 @@ class ImageNews
         return $this->news;
     }
 
-    public function setNews(News $news): self
+    public function setNews(?News $news): self
     {
         $this->news = $news;
 

@@ -26,9 +26,9 @@
                     <td>
                         {# S'il n'y a pas d'images associées a l'œuvre #}
                         {% if actu.imageNews is empty %}
-                            <p>Aucune image à afficher. Veuillez ajouter une image.</p>
+                            <p>Aucune image à afficher.</p>
                         {% else %}
-                            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ actu.imageNews.name) }}" width="100" height="100">
+                            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ actu.imageNews[0].name) }}" width="100" height="100">
                         {% endif %}
                     </td>
                     {# <td><img src="{{ asset('assets/uploads/images/' ~ actu.media) }}" alt="" width="100"></td> #}
@@ -40,9 +40,13 @@
                     <td class="text-center">
                         <a href="{{ path("admin_news_update", { id: actu.id}) }}" class="btn btn-primary">Modifier</a>
                     </td>
-                    {# <td class="text-center">
-                        <a type="button" href="#" data-id="{{ actu.id }}" data-title="{{ actu.title }}" class="btn btn-danger deleteNewsBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
-                    </td> #}
+                    <td class="text-center">
+                        <form method="post" action="{{ path('admin_news_delete', {'id': actu.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette actualité?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ actu.id) }}">
+                            <button class="btn">Delete</button>
+                        </form>
+
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -69,7 +73,7 @@
     </div> #}
 {% endblock %}
 
-{# {% block javascripts %}
+{% block javascripts %}
     <script src="{{ asset('assets/js/newsDashboard.js')}}"></script>
-{% endblock %} #}
+{% endblock %}
 

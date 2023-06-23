@@ -4,16 +4,18 @@
     {# S'il n'a pas d'image afficher l'input d'upload d'image #}
     {% if news.imageNews is empty %}
         <div>
-            <p>Ajouter une nouvelle image (facultatif) :</p>
+            <p>Ajouter une image (facultatif) :</p>
             {{ form_row(form.images) }}
         </div>
     {% else %}
         {# Sinon afficher l'image #}
         <p>Image :</p>
+        {% for image in news.imageNews %}
         <div class="d-inline-flex p-1 align-items-center">
-            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ news.imageNews.name) }}" alt="Image" width="100" height="100">
-            <a href="{{ path('admin_delete_image_news', {id: news.imageNews.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ news.imageNews.id) }}">Supprimer</a>
+            <img class="img-fluid" src="{{ asset('assets/uploads/images/news/mini/300x300-' ~ image.name) }}" alt="Image" width="100" height="100">
+            <a href="{{ path('admin_delete_image_news', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
         </div>
+        {% endfor %}
         {# Et cacher l'input d'upload d'image #}
         {% do form.images.setRendered() %}
     {% endif %}
@@ -22,3 +24,4 @@
 <button class="btn btn-primary">
 	{{ button_label|default('Enregistrer') }}
 </button>
+{{ form_end(form) }}

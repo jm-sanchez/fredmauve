@@ -20,7 +20,8 @@ class NewsType extends AbstractType
                 'label' => false,
                 'mapped' => false,
                 // pour vérifier le contrôl du back (message flash)
-                'required' => false
+                'required' => false,
+                'multiple' => false,
             ])
             ->add('slug')
             // ->add('created_at')
