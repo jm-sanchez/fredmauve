@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -29,6 +31,11 @@ class Contact
      *     minMessage = "Ce champ doit comporter au moins {{ limit }} caractères.",
      *     maxMessage = "Ce champ ne peut pas dépasser {{ limit }} caractères."
      * )
+     *  * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message = "Ce champ ne doit pas contenir des nombres."
+     * )
      */
     private $name;
 
@@ -48,13 +55,19 @@ class Contact
      * @Assert\NotBlank(
      *     message = "Merci de remplir ce champ."
      * )
+     * @Assert\Length(
+     * min = 2,
+     * max = 50,
+     * minMessage = "Ce champ doit comporter au moins {{ limit }} caractères.",
+     * maxMessage = "Ce champ ne peut pas dépasser {{ limit }} caractères."
+     * )
      */
     private $subject;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(
-     *     message = "Merci de remplir ce champ."
+     *     message = "Merci d'ajouter un message."
      * )
      */
     private $message;

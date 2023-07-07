@@ -4,28 +4,29 @@ namespace App\Form;
 
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class ContactFormType extends AbstractType
+class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
                 'label' => false,
-                'required' => false,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                     'placeholder' => 'Votre nom...',
                 ]
             ])
             ->add('email', EmailType::class, [
-                'required' => false,
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control outline my-3',
@@ -34,7 +35,6 @@ class ContactFormType extends AbstractType
             ])
             ->add('subject', TextType::class, [
                 'label' => false,
-                'required' => false,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                     'placeholder' => 'Sujet de votre message...',
@@ -42,23 +42,26 @@ class ContactFormType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
-                'required' => false,
                 'attr' => [
                     'rows' => '5',
                     'class' => 'form-control outline my-3',
                     'placeholder' => 'Votre message ou commentaire...',
                 ]
             ])
+            ->add('conditions', CheckboxType::class, [
+                'label' => 'En cochant cette case, vous acceptez que les informations saisies soient enregistrées dans le seul but de traiter votre demande.',
+                'required' => true,
+                'mapped' => false,
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'contact',
+            ])
             ->add('button', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
                     'class' => 'btn btn-outline-dark btn-lg g-recaptcha',
-                    // Clé reCAPTCHA juste pour tester
-                    'data-sitekey' => '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
-                    'data-callback' => 'onSubmit',
-                    'data-action' => 'submit'
                 ]
-
             ])
         ;
     }

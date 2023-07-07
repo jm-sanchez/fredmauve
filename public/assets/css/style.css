@@ -7,6 +7,8 @@
 body {
     font-family: 'Space Mono', monospace;
 }
+
+/* Navbar */
 header {
     display: flex;
     flex-direction: column;
@@ -40,4 +42,18 @@ nav .menuItems li a:hover {
     color: #787878;
     transition: all 0.2s ease-in-out;
     position: relative;
+}
+
+/* Footer */
+.fa-facebook:hover {
+    text-shadow: #3b5998 1px 0 10px;
+    transition: all 0.15s ease-in-out;
+}
+.fa-instagram:hover {
+    text-shadow: #E4405F 1px 0 10px;
+    transition: all 0.15s ease-in-out;
+}
+.fa-linkedin:hover {
+    text-shadow: #0e76a8 1px 0 10px;
+    transition: all 0.15s ease-in-out;
 }

@@ -6,39 +6,42 @@
 <link rel="stylesheet" href="{{ asset("assets/css/contact.css") }}">
 {% endblock %}
 
-{% block javascripts %}
-{# reCAPTCHA #}
-<script src="https://www.google.com/recaptcha/api.js"></script>
-{% endblock %}
+{% block javascripts %}{% endblock %}
 
 {% block body %}
-
 <h1 class="text-center mt-5">Contact</h1>
 <div class="p-5 container-xxl d-flex justify-content-around">
     <div class="row gx-5 row-cols-1 row-cols-sm-2 align-items-center">
+
         {# Le formulaire de contact #}
-        <section class="p-4 rounded-3 shadow-lg d-column-flex justify-content-center col-sm-12 col-md-8 offset-md-2 form mb-5">
+        <section class="p-4 rounded-3 shadow d-column-flex justify-content-center col-sm-12 col-md-8 offset-md-2 form mb-5 fondColor">
             <h2>Contactez-moi via ce formulaire</h2>
-            {{ form_start(formContact, {'attr': {'id': 'recaptcha'}}) }}
+            <p>(Tous les champs sont obligatoires)</p>
+            {{ form_start(formContact) }}
                 {{ form_row(formContact.name) }}
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.subject) }}
                 {{ form_row(formContact.message) }}
-                {{ form_row(formContact.button) }}
-            {# reCAPTCHA #}
-            <script>
-                function onSubmit(token) {
-                    document.getElementById("recaptcha").submit();
-                }
-            </script>
+                <div class="d-inline-flex py-2">
+                    <div class="flex-column justify-content-start pe-2">
+                        {{ form_widget(formContact.conditions) }}
+                    </div>
+                        {{ form_label(formContact.conditions) }}
+                </div>
+                <div class="d-flex flex-row pt-4">
+                    <div class="d-inline-flex">
+                        {{ form_row(formContact.button) }}
+                    </div>
+                    {# Message Flash #}
+                    {% for message in app.flashes('notice') %}
+                    <div class="flash-notice d-flex justify-content-center m-3 fst-italic">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
             {{ form_end(formContact) }}
-
-            {# Message Flash #}
-            {% for message in app.flashes('notice') %}
-            <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
-            {% endfor %}
-
         </section>
+
     {# Infos de contact hors le formulaire #}
         <section class ="col-sm-12 col-md-8 offset-md-2">
             <div class = "my-5 text-center">
