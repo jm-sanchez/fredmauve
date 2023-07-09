@@ -137,3 +137,11 @@ Erreurs :
 - Séparation du formulaire et du button de suppression dans de nouveaux fichiers. Remplacement en include _form et _delete_form
 - Modification des entités News et ImageNews (Relation OneToOne -> OneToMany). On a aussi adapté les différentes méthodes dans l'entité ImageNews et les templates (ajout des boucles for).
 - Changement de la variable twig "categoryForm" à "form"
+
+07/07 (Juan)
+- Modification de la vue du fomulaire de login:
+    - Le message d'erreur s'affiche en français et dans la partie suprérieure interne dur formulaire.
+    - Ajout de la case à coché "se souvenir de moi"
+- Configuration de la langue de l'application (config/packages/translation.yaml)
+- Changement de la route d'accès une fois que l'admin est connecté (src/Security/AppAuthenticator.php)
+- Modification de la vue de l'index du contact_dashboard

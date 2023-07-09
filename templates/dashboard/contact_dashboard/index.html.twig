@@ -4,18 +4,25 @@
 
 
 {% block body %}
+
+{# Nécessaire pour que le titre du dashbord ne s'affiche pas sur cette page#}
 {% block pageTitle %}{% endblock %}
+
+{# Menu de navigation du tableau de bord #}
 {{ parent() }}
-    <h1 class = "text-center mt-5">Gérer les messages</h1>
+
+    <h1 class = "text-center mt-5
+    mb-3">Gestion de messages</h1>
     <div class="container">
-        <table class="table">
-            <thead>
+        <table class="table table-bordered border border-dark table-striped">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col" class="col-2">Nom</th>
                     <th scope="col" class="col-2">Email</th>
-                    <th scope="col" class="col-3">Sujet</th>
-                    <th scope="col" class="col-3">Message</th>
-                    <th scope="col" class="col-2">Date de création</th>
+                    <th scope="col" class="col-2">Sujet</th>
+                    <th scope="col" class="col-4">Message</th>
+                    <th scope="col" class="col-1">Date</th>
+                    <th scope="col" class="col-1">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,10 +35,12 @@
                     {# le filtre 'date' change le format et trasforme l'objet DateTime qui vient du controller #}
                     <td>{{ message.createdAt|date('d/m/Y') }}</td>
                     <td class="text-center">
-                        <a href="{{ path("admin_contact_show", { id: message.id}) }}" class="btn btn-info">Afficher les détails</a>
-                    </td>
-                    <td class="text-center">
-                        <a type="button" href="#" data-id="{{ message.id }}" data-name="{{ message.name }}" class="btn btn-danger deleteContactBtn" data-bs-toggle="modal" data-bs-target="#modalDelete">Supprimer</a>
+                        <a href="{{ path("admin_contact_show", { id: message.id}) }}" class="link-dark">
+                            <i class="fa-solid fa-magnifying-glass mx-1"></i>
+                        </a>
+                        <a type="button" href="#" data-id="{{ message.id }}" data-name="{{ message.name }}" class="deleteContactBtn link-dark" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                            <i class="fa-regular fa-trash-can mx-1"></i>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -44,15 +53,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer un message</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation de suppression</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Voulez-vous vraiment supprimer le message
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <a type="button" class="btn btn-primary">Confirmer</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                    <a type="button" class="btn btn-danger">Oui</a>
                 </div>
             </div>
         </div>
