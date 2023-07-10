@@ -137,3 +137,7 @@ Erreurs :
 - Séparation du formulaire et du button de suppression dans de nouveaux fichiers. Remplacement en include _form et _delete_form
 - Modification des entités News et ImageNews (Relation OneToOne -> OneToMany). On a aussi adapté les différentes méthodes dans l'entité ImageNews et les templates (ajout des boucles for).
 - Changement de la variable twig "categoryForm" à "form"
+
+10/07
+- Modification de tous les templates de WorkDashboard
+- Ajout de contraintes dans l'entité Work le Slug est désormais null

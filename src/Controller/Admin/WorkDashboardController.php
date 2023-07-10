@@ -16,10 +16,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/oeuvres')]
+/**
+ * @Route("/admin/oeuvres")
+ */
 class WorkDashboardController extends AbstractController
 {
-    #[Route('/', name: 'admin_work_home', methods: ['GET'])]
+    /**
+     * @Route("/", name="admin_work_home", methods={"GET"})
+     */
     public function index(WorkRepository $workRepository): Response
     {
         return $this->render('dashboard/work_dashboard/index.html.twig', [
@@ -27,7 +31,9 @@ class WorkDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/ajout', name: 'admin_work_add', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/ajout", name="admin_work_add", methods={"GET", "POST"})
+     */
     public function addWork(Request $request, EntityManagerInterface $entityManager, AdminRepository $adminRepository, PictureService $pictureService): Response
     {
         $work = new Work();
@@ -37,15 +43,6 @@ class WorkDashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère les images
             $images = $form->get('images')->getData();
-
-            if ($images == null) {
-                // Message flash
-                $this->addFlash(
-                    'notice',
-                    'Veuillez ajouter une image !'
-                );
-                return $this->redirectToRoute('admin_work_add');
-            }
 
             foreach($images as $image){
                 // On définit le dossier de destination
@@ -72,7 +69,9 @@ class WorkDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_work_show', methods: ['GET'])]
+    /**
+     * @Route("/{id}", name="admin_work_show", methods={"GET"})
+     */
     public function showWork(Work $work): Response
     {
         return $this->render('dashboard/work_dashboard/show.html.twig', [
@@ -80,7 +79,9 @@ class WorkDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/modifier', name: 'admin_work_update', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/{id}/modifier", name="admin_work_update", methods={"GET", "POST"})
+     */
     public function updateWork(Request $request, Work $work, EntityManagerInterface $entityManager, PictureService $pictureService): Response
     {
         $form = $this->createForm(WorkType::class, $work);
@@ -100,10 +101,10 @@ class WorkDashboardController extends AbstractController
                 $img->setName($fichier);
                 $work->addImage($img);
             }
+            $entityManager->persist($work);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_work_home');
-            // return $this->redirectToRoute('admin_work_update', ['id' => $work->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dashboard/work_dashboard/update.html.twig', [
@@ -112,7 +113,9 @@ class WorkDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/supprimer', name: 'admin_work_delete', methods: ['POST'])]
+    /**
+     * @Route("/{id}/supprimer", name="admin_work_delete", methods={"POST"})
+     */
     public function deleteWork(Request $request, Work $work, EntityManagerInterface $entityManager, PictureService $pictureService): Response
     {
         if ($this->isCsrfTokenValid('delete'.$work->getId(), $request->request->get('_token'))) {
@@ -125,11 +128,10 @@ class WorkDashboardController extends AbstractController
                 // dump($name);
                 if ($pictureService->delete($name, 'works', 300, 300)){
                 // On supprime l'image de la base de données
-                $entityManager->remove($image);
-                $entityManager->flush();
+                    $entityManager->remove($image);
+                    $entityManager->flush();
                 }
             }
-
             $entityManager->remove($work);
             $entityManager->flush();
         }
@@ -137,7 +139,9 @@ class WorkDashboardController extends AbstractController
         return $this->redirectToRoute('admin_work_home', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('image/{id}/supprimer', name: 'admin_delete_image', methods: ['DELETE'])]
+    /**
+     * @Route("image/{id}/supprimer", name="admin_delete_image", methods={"DELETE"})
+     */
     public function deleteImage(Request $request, Image $image, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
     {
         // On récupère le contenu de la requête

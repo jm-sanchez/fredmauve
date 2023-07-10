@@ -3,49 +3,61 @@
 {% block title %}Œuvres{% endblock %}
 
 {% block body %}
+
+{# Nécessaire pour que le titre du dashbord ne s'affiche pas sur cette page#}
+{% block pageTitle %}{% endblock %}
+
+{# Menu de navigation du tableau de bord #}
 {{ parent() }}
-    <h1>Liste des Œuvres</h1>
 
-    <a class="btn btn-success" href="{{ path('admin_work_add') }}">Ajouter une œeuvre</a>
-    <a class="btn btn-primary" href="{{ path('admin_category_home') }}">Liste de categories</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Format</th>
-                <th>Category</th>
-                <th>Title</th>
-                <th>Images</th>
-                <th>Localisation</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for work in works %}
-            <tr>
-                <td>{{ work.format }}</td>
-                <td>{{ work.category.name }}</td>
-                <td>{{ work.title }}</td>
-                <td>
-                {# S'il n'y a pas d'images associées a l'œuvre #}
-                {% if work.images is empty %}
-                    <p>Aucune image à afficher. Veuillez ajouter une image.</p>
-                {% else %}
-                    <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" width="100" height="100">
-                {% endif %}
-                </td>
-                <td>{{ work.localisation }}</td>
-                <td>
-                    <a href="{{ path('admin_work_show', {'id': work.id}) }}">Afficher les détails</a>
-                    <a href="{{ path('admin_work_update', {'id': work.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="14">Liste vide</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+    <h1 class = "text-center mt-5 mb-3">Liste des Œuvres</h1>
+    <div class="container">
+        <div class="d-flex flex-row justify-content-between mb-3">
+            <a class="btn btn-outline-dark" href="{{ path('admin_work_add') }}">Ajouter une œeuvre</a>
+            <a class="btn btn-outline-dark" href="{{ path('admin_category_home') }}">Liste de categories</a>
+        </div>
+        <table class="table table-bordered border border-dark table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="col-3">Title</th>
+                    <th scope="col" class="col-2">Image principale</th>
+                    <th scope="col" class="col-2">Format</th>
+                    <th scope="col" class="col-2">Category</th>
+                    <th scope="col" class="col-2">Localisation</th>
+                    <th scope="col" class="col-1">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for work in works %}
+                <tr>
+                    <td>{{ work.title }}</td>
+                    <td>
+                    {# S'il n'y a pas d'images associées a l'œuvre #}
+                    {% if work.images is empty %}
+                        <p>Aucune image à afficher. Veuillez ajouter une image.</p>
+                    {% else %}
+                        <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" width="100" height="100">
+                    {% endif %}
+                    </td>
+                    <td>{{ work.format }}</td>
+                    <td>{{ work.category.name }}</td>
+                    <td>{{ work.localisation }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('admin_work_show', {'id': work.id}) }}" class="link-dark text-decoration-none">
+                            <i class="fa-solid fa-eye mx-1"></i>
+                        </a>
+                        <a href="{{ path('admin_work_update', {'id': work.id}) }}" class="link-dark text-decoration-none">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        {{ include('dashboard/work_dashboard/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">Liste vide.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -1,11 +1,18 @@
 {% extends 'dashboard/index.html.twig' %}
 
-{% block title %}Ajout d'une œuvre{% endblock %}
+{% block title %}Ajouter une œuvre{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une œuvre</h1>
+    <h1 class = "text-center mt-5 mb-3">Ajouter une œuvre</h1>
+    <div class="container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <p class="text-end">(*) Champs obligatoires.</p>
 
-    {{ include('dashboard/work_dashboard/_form.html.twig') }}
+                {{ include('dashboard/work_dashboard/_form.html.twig') }}
 
-    <a href="{{ path('admin_work_home') }}">back to list</a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
