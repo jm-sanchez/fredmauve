@@ -1,4 +1,41 @@
-<nav>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid text-center d-flex flex-column">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mt-2 mb-2 mb-lg-0 fs-6">
+        <li class="m-3">
+            <a href="{{ path('app_home') }}" class="text-dark text-decoration-none">Accueil</a>
+        </li>
+        <li class="m-3">
+            <a href="{{ path('app_about') }}" class="text-dark text-decoration-none">Biographie</a>
+        </li>
+        <li class="m-3">
+            <a href="{{ path('app_works') }}" class="text-dark text-decoration-none">Œuvres</a>
+        </li>
+        <li class="m-3">
+            <a href="{{ path('app_news') }}" class="text-dark text-decoration-none">Actualités</a>
+        </li>
+        <li class="m-3">
+            <a href="{{ path('app_shop') }}" class="text-dark text-decoration-none">Boutique</a>
+        </li>
+        <li class="m-3">
+            <a href="{{ path('app_contact') }}" class="text-dark text-decoration-none">Contact</a>
+        </li>
+        {% if app.user %}
+        <li class="m-3">
+            <a href="{{ path('admin_dashboard') }}" class="text-dark text-decoration-none">Dashboard</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+{# <nav>
     <ul class="menuItems">
         <li>
             <a href="{{ path('app_home') }}">Accueil</a>
@@ -32,4 +69,4 @@
     <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
 {% else %}
     <a href="{{ path('app_login') }}" class="btn btn-primary me-2">Connexion</a>
-{% endif %}
+{% endif %} #}

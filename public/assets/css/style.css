@@ -3,41 +3,12 @@
     src: url("../font/Space_Mono/SpaceMono-Regular.otf");
     src: url("../font/Space_Mono/SpaceMono-Regular.ttf");
 }
-
 body {
     font-family: 'Space Mono', monospace;
 }
-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-}
 header section h1 {
-    font-size: 5em;
+    font-size: 4em;
 }
-/* nav {
-    margin: 10px;
-    padding: 5px;
-} */
-nav .menuItems {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-}
-nav .menuItems li {
-    margin: 20px;
-}
-nav .menuItems li a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 1.2em;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-}
-nav .menuItems li a:hover {
-    color: #787878;
-    transition: all 0.2s ease-in-out;
-    position: relative;
+nav ul li a:hover {
+    font-weight: bold;
 }
