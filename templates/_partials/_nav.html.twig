@@ -1,31 +1,31 @@
 <nav class="navbar navbar-expand-lg">
-  <div class="container-fluid text-center d-flex flex-column">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid d-flex justify-content-center text-center">
+    <button class="navbar-toggler text-dark border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav me-auto mt-2 mb-2 mb-lg-0 fs-6">
-        <li class="m-3">
-            <a href="{{ path('app_home') }}" class="text-dark text-decoration-none">Accueil</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_home') }}" class="text-dark nav-link text-decoration-none">Accueil</a>
         </li>
-        <li class="m-3">
-            <a href="{{ path('app_about') }}" class="text-dark text-decoration-none">Biographie</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_about') }}" class="text-dark nav-link text-decoration-none">Biographie</a>
         </li>
-        <li class="m-3">
-            <a href="{{ path('app_works') }}" class="text-dark text-decoration-none">Œuvres</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_works') }}" class="text-dark nav-link text-decoration-none">Œuvres</a>
         </li>
-        <li class="m-3">
-            <a href="{{ path('app_news') }}" class="text-dark text-decoration-none">Actualités</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_news') }}" class="text-dark nav-link text-decoration-none">Actualités</a>
         </li>
-        <li class="m-3">
-            <a href="{{ path('app_shop') }}" class="text-dark text-decoration-none">Boutique</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_shop') }}" class="text-dark nav-link text-decoration-none">Boutique</a>
         </li>
-        <li class="m-3">
-            <a href="{{ path('app_contact') }}" class="text-dark text-decoration-none">Contact</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('app_contact') }}" class="text-dark nav-link text-decoration-none">Contact</a>
         </li>
         {% if app.user %}
-        <li class="m-3">
-            <a href="{{ path('admin_dashboard') }}" class="text-dark text-decoration-none">Dashboard</a>
+        <li class="m-3 nav-item">
+            <a href="{{ path('admin_dashboard') }}" class="text-dark nav-link text-decoration-none">Dashboard</a>
         </li>
         {% endif %}
       </ul>
