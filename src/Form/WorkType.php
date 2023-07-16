@@ -52,7 +52,7 @@ class WorkType extends AbstractType
                 'label' => '(*) Image(s)',
                 'mapped' => false,
                 'multiple' => true,
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                 ]
