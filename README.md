@@ -137,3 +137,9 @@ Erreurs :
 - Séparation du formulaire et du button de suppression dans de nouveaux fichiers. Remplacement en include _form et _delete_form
 - Modification des entités News et ImageNews (Relation OneToOne -> OneToMany). On a aussi adapté les différentes méthodes dans l'entité ImageNews et les templates (ajout des boucles for).
 - Changement de la variable twig "categoryForm" à "form"
+
+03/07
+- Modification de la vue du formulaire de contact :
+    - Ajout de la case à cocher sur l'utilisation des données saisies par l'utilisateur
+    - Modification du fichier "FormType" et "contact.css"
+- Intégration de reCAPTCHA v3 de Google grâce au bundle KarserRecaptcha3Bundle

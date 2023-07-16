@@ -7,7 +7,13 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
-/* Logo */
+/* Navbar */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
 header section h1 {
     font-size: 4em;
 }
@@ -30,4 +36,3 @@ nav ul li a:hover {
     text-shadow: #0e76a8 1px 0 10px;
     transition: all 0.15s ease-in-out;
 }
-

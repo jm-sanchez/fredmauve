@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Entity\Contact;
-use App\Form\ContactFormType;
+use App\Form\ContactType;
 use App\Repository\AdminRepository;
 use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,39 +19,40 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function index(Request $request, EntityManagerInterface $manager, AdminRepository $adminRepository): Response
+    public function index(Request $request, EntityManagerInterface $em, AdminRepository $adminRepository, Recaptcha3Validator $recaptcha3Validator): Response
     {
         $contact = new Contact();
-        $form = $this->createForm(ContactFormType::class, $contact);
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Filtration des variables
             $name = filter_var($form->get("name")->getData(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $email = filter_var($form->get("email")->getData(), FILTER_VALIDATE_EMAIL);
+            $email = filter_var($form->get("email")->getData(), FILTER_SANITIZE_EMAIL);
+            $subject = filter_var($form->get("subject")->getData(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $message = filter_var($form->get("message")->getData(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // Définition de la date demande
             $timezone = new DateTimeZone('Europe/Paris');
             $date = new \DateTime("now", $timezone);
-            if ($name) {
-                $form->get("name")->getData();
-            }
-            if ($email) {
-                $form->get("email")->getData();
-            }
-            if ($message) {
-                $form->get("message")->getData();
-            }
-            $contact->setCreatedAt($date);
-
-            // Vérifier l'id de l'admin dans la bdd
+            // Vérification de l'email de l'admin
             $admin = $adminRepository->findOneBy(["email" => "admin@admin.fr"]);
-            $contact->setAdministrator($admin);
+            // Obtention du score reCAPTCHA v3
+            $score = $recaptcha3Validator->getLastResponse()->getScore();
 
-            $manager->persist($contact);
-            $manager->flush();
-            // Message flash
-            $this->addFlash(
-                'notice',
-                'Votre message a été envoyé !'
-            );
+            $contact->setName($name)
+                ->setEmail($email)
+                ->setSubject($subject)
+                ->setMessage($message)
+                ->setCreatedAt($date)
+                ->setAdministrator($admin);
+
+            if ($score >= 0.7) {
+                $em->persist($contact);
+                $em->flush();
+                // Message flash
+                $this->addFlash('notice', 'Votre message a été envoyé !');
+            }
+
             return $this->redirectToRoute('app_contact');
         }
 
