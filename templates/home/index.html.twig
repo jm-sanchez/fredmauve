@@ -3,58 +3,43 @@
 {% block title %}Accueil - Fred Mauve{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
 {% endblock %}
 
 {% block body %}
-
-<main class="container-fluid px-5">
-	<h1 class="title text-center my-5">Artiste - Illustrateur</h1>
-	<div class="row">
-		<section class="linkSection bg-galerie">
-			<div class="overlay"></div>
-			<a href="{{ path('app_works') }}">
-				<h2 class="tabs">Galerie</h2>
-			</a>
-		</section>
-		<section class="linkSection bg-about">
-			<div class="overlay"></div>
-			<a href="{{ path('app_about') }}">
-				<h2 class="tabs">À propos</h2>
-			</a>
-		</section>
-		<section class="linkSection bg-news">
-			<div class="overlay"></div>
-			<a href="{{ path('app_news') }}">
-				<h2 class="tabs">Actualités</h2>
-			</a>
-		</section>
-		<section class="linkSection bg-shop">
-			<div class="overlay"></div>
-			<a href="{{ path('app_shop') }}">
-				<h2 class="tabs">Boutique</h2>
-			</a>
-		</section>
-		<section class="linkSection bg-contact">
-			<div class="overlay"></div>
-			<a href="{{ path('app_contact') }}">
-				<h2 class="tabs">Contact</h2>
-			</a>
-		</section>
-	</div>
-</main>
-
+	<main class="container-fluid px-5">
+		<h1 class="title text-center my-5">Artiste - Illustrateur</h1>
+		<div class="row">
+			<section class="linkSection bg-galerie">
+				<div class="overlay"></div>
+				<a href="{{ path('app_works') }}">
+					<h2 class="tabs">Galerie</h2>
+				</a>
+			</section>
+			<section class="linkSection bg-about">
+				<div class="overlay"></div>
+				<a href="{{ path('app_about') }}">
+					<h2 class="tabs">Biographie</h2>
+				</a>
+			</section>
+			<section class="linkSection bg-news">
+				<div class="overlay"></div>
+				<a href="{{ path('app_news') }}">
+					<h2 class="tabs">Actualités</h2>
+				</a>
+			</section>
+			<section class="linkSection bg-shop">
+				<div class="overlay"></div>
+				<a href="{{ path('app_shop') }}">
+					<h2 class="tabs">Boutique</h2>
+				</a>
+			</section>
+			<section class="linkSection bg-contact">
+				<div class="overlay"></div>
+				<a href="{{ path('app_contact') }}">
+					<h2 class="tabs">Contact</h2>
+				</a>
+			</section>
+		</div>
+	</main>
 {% endblock %}
-
-{# <section class="galerieSection position-relative text-center col-12">
-            <a href="{{ path('app_works') }}">
-                <img class="img-fluid overlay" src="{{ asset('assets/media/images/moustacheb.jpeg') }}" alt="Astronaute qui marche dans la rue" width="100%">
-                <h2 class="tabs position-absolute top-50 start-50 translate-middle text-light">Galerie</h2>
-            </a>
-        </section>
-        <section class="aboutSection position-relative text-center my-5 col-12">
-            <a href="{{ path('app_about') }}">
-                <img class="img-fluid" src="{{ asset('assets/media/images/monsieur.png') }}" alt="Astronaute qui marche dans la rue">
-                <h2 class="tabs position-absolute top-50 start-50 translate-middle text-light">À propos</h2>
-            </a>
-        </section> #}

@@ -6,12 +6,18 @@
 body {
     font-family: 'Space Mono', monospace;
 }
+
+/* Logo */
 header section h1 {
     font-size: 4em;
 }
+
+/* Hover links navbar */
 nav ul li a:hover {
     font-weight: bold;
 }
+
+/* Hover links footer */
 .fa-facebook:hover {
     text-shadow: #3b5998 1px 0 10px;
     transition: all 0.15s ease-in-out;
@@ -24,3 +30,4 @@ nav ul li a:hover {
     text-shadow: #0e76a8 1px 0 10px;
     transition: all 0.15s ease-in-out;
 }
+

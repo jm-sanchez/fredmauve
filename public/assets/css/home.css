@@ -5,6 +5,26 @@ body {
 h1.title {
     font-size: 2rem;
 }
+.bg-galerie {
+    background-image: url("../uploads/images/moustacheb.jpeg");
+
+}
+.bg-about {
+    background-image: url("../uploads/images/monsieur.png");
+
+}
+.bg-news {
+    background-image: url("../uploads/images/crime.png");
+
+}
+.bg-shop {
+    background-image: url("../uploads/images/PSST 4.jpeg");
+
+}
+.bg-contact {
+    background-image: url("../uploads/images/mouches.png");
+
+}
 .overlay {
     position: absolute;
     top: 0;
@@ -13,7 +33,7 @@ h1.title {
     height: 100%;
     background-color: black;
     opacity: 0.25;
-  }
+}
 h2.tabs {
     font-size: 10vw;
     color: white;
@@ -42,28 +62,11 @@ h2:hover {
     flex-direction: column;
     justify-content: center;
 }
-.bg-galerie {
-    background-image: url("../uploads/images/moustacheb.jpeg");
 
-}
-.bg-about {
-    background-image: url("../uploads/images/monsieur.png");
 
-}
-.bg-news {
-    background-image: url("../uploads/images/crime.png");
+/* Media Queries */
 
-}
-.bg-shop {
-    background-image: url("../uploads/images/PSST 4.jpeg");
-
-}
-.bg-contact {
-    background-image: url("../uploads/images/mouches.png");
-
-}
-
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     h1.title {
         font-size: 3rem;
     }
@@ -71,3 +74,9 @@ h2:hover {
         height: 30em;
     }
 }
+@media screen and (min-width: 1296px) {
+    h2.tabs {
+        font-size: 8rem;
+    }
+}
+
