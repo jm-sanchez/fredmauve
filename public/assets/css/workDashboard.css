@@ -1,0 +1,6 @@
+/* Les messages d'erreur */
+form div ul li {
+    color: red;
+    list-style: none;
+    font-style: italic;
+}

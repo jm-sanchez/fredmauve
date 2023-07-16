@@ -3,7 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Admin;
+use App\Entity\Category;
 use App\Entity\Contact;
+use App\Entity\Image;
+use App\Entity\Work;
 use DateTimeZone;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -36,7 +39,23 @@ class AppFixtures extends Fixture
                     ->setCreatedAt(new \DateTime("now", $timezone))
                     ->setAdministrator($admin);
             $manager->persist($contact);
-            $manager->flush();
         }
+
+        // for ($i=1; $i <= 4; $i++) {
+        //     $work = new Work();
+        //     $image = new Image();
+        //     $category = new Category();
+        //     $category->setName("art")
+        //             ->setSlug("art");
+        //     $image->setName("public/assets/uploads/images/img_exemple.png");
+        //     $work->setTitle("titre".$i)
+        //         ->setFormat("50 x 50 cm")
+        //         ->setCategory($category)
+        //         ->setTechnique("Illustration sur papier")
+        //         ->setQuantity($i)
+        //         ->addImage($image);
+        //     $manager->persist($work);
+        // }
+        $manager->flush();
     }
 }

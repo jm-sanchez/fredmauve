@@ -1,43 +1,55 @@
 {{ form_start(form) }}
-    {{ form_row(form.technique) }}
-    {{ form_row(form.format) }}
-    {{ form_row(form.category) }}
     {{ form_row(form.title) }}
-
-    {# On affiche les images si on est en édition #}
+    {{ form_row(form.technique) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.format) }}
+        </div>
+        <div class="col">
+        {{ form_row(form.category) }}
+        </div>
+    </div>
+    {# Affichage des images si on modifie une œuvre #}
     {% if app.request.attributes.get('_route') == 'admin_work_update' %}
-        <p>Images</p>
-
-        {# {% if work.images|length > 1 %} #}
+        <p>Image(s)</p>
         {% for image in work.images %}
-        <div class="d-inline-flex p-1 align-items-center">
-            <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" alt="Image" width="100" height="100">
-            <a href="{{ path('admin_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+        <div class="d-inline-flex p-1 align-items-center position-relative">
+            <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" alt="Image" width="150" height="150">
+            <a href="{{ path('admin_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="position-absolute top-0 end-0 me-2 text-light fs-4  text-decoration-none">X</a>
         </div>
         {% endfor %}
-        {# {% else %}
-        <div class="d-inline-flex p-1 align-items-center">
-            <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" alt="Image" width="100" height="100">
-        </div>
-        {% endif %} #}
-
-    <p>Ajouter de nouvelles images :</p>
-        {{ form_row(form.images) }}
+    <p class="my-2">Ajouter de nouvelles images :</p>
+        {{ form_widget(form.images) }}
     {% else %}
         {{ form_row(form.images) }}
     {% endif %}
-
     {{ form_row(form.description) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.localisation) }}
-    {{ form_row(form.price) }}
-    {{ form_row(form.quantity) }}
-    {{ form_row(form.saleable) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.date) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.localisation) }}
+        </div>
+    <div class="d-inline-flex py-2">
+        <div class="flex-column justify-content-start pe-2">
+            {{ form_widget(form.saleable) }}
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            {{ form_label(form.saleable) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.price) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.quantity) }}
+        </div>
+    </div>
     {{ form_row(form.slug) }}
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice d-flex justify-content-center m-3">{{ message }}</div>
-    {% endfor %}
-
-    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
-
+    <div class="d-flex flex-row mt-4">
+        <button class="btn btn-dark">{{ button_label|default('Enregistrer') }}</button>
+        <a class="btn btn-secondary ms-2" href="{{ path('admin_work_home') }}">Annuler</a>
+    </div>
 {{ form_end(form) }}

@@ -151,3 +151,7 @@ Erreurs :
 - Configuration de la langue de l'application (config/packages/translation.yaml)
 - Changement de la route d'accès une fois que l'admin est connecté (src/Security/AppAuthenticator.php)
 - Modification de la vue de l'index du contact_dashboard
+
+10/07
+- Modification de tous les templates de WorkDashboard
+- Ajout de contraintes dans l'entité Work le Slug est désormais null

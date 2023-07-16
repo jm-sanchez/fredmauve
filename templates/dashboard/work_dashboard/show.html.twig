@@ -3,75 +3,68 @@
 {% block title %}Œuvres{% endblock %}
 
 {% block body %}
-    <h1>Liste des Œuvres</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ work.id }}</td>
-            </tr>
-            <tr>
-                <th>Technique</th>
-                <td>{{ work.technique }}</td>
-            </tr>
-            <tr>
-                <th>Format</th>
-                <td>{{ work.format }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ work.category.name }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ work.title }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>
-                {% for image in work.images %}
-                    <img class="img-fluid" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" width="100" height="100">
-                {% endfor %}
-                </td>
-                {# {% for img in image %}
-                <td>{{ img.name }}</td>
-                {% endfor %} #}
-            </tr>
-            {# <tr>
-                <th>Image_detail</th>
-                <td>{{ work.imageDetail ? work.imageDetail|join(', ') : '' }}</td>
-            </tr> #}
-            <tr>
-                <th>Description</th>
-                <td>{{ work.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ work.date }}</td>
-            </tr>
-            <tr>
-                <th>Localisation</th>
-                <td>{{ work.localisation }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ work.price }}</td>
-            </tr>
-            <tr>
-                <th>Quantity</th>
-                <td>{{ work.quantity }}</td>
-            </tr>
-            <tr>
-                <th>Saleable</th>
-                <td>{{ work.saleable ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_work_home') }}">back to list</a>
-
-    <a href="{{ path('admin_work_update', {'id': work.id}) }}">edit</a>
-
-    {{ include('dashboard/work_dashboard/_delete_form.html.twig') }}
+    <h1 class = "text-center mt-5 mb-3">"{{ work.title }}"</h1>
+    <div class="container-xxl">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <table class="table table-bordered border border-dark table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="table-dark">Image(s)</th>
+                            <td class="text-center">
+                            {% for image in work.images %}
+                                <img src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ image.name) }}" width="150" height="150" class="image-fluid my-1">
+                            {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col" class="col-4 table-dark">Titre de l'œuvre</th>
+                            <td class="text-center">{{ work.title }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Technique</th>
+                            <td class="text-center">{{ work.technique }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Format</th>
+                            <td class="text-center">{{ work.format }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Categorie</th>
+                            <td class="text-center">{{ work.category.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Description</th>
+                            <td class="text-center">{{ work.description }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Année de création</th>
+                            <td class="text-center">{{ work.date }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Localisation</th>
+                            <td class="text-center">{{ work.localisation }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Prix</th>
+                            <td class="text-center">{{ work.price }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Quantité</th>
+                            <td class="text-center">{{ work.quantity }}</td>
+                        </tr>
+                        <tr>
+                            <th class="table-dark">Boutique</th>
+                            <td class="text-center">{{ work.saleable ? 'Oui' : 'Non' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-row justify-content-center mt-4">
+                    <a class="btn btn-dark" href="{{ path('admin_work_home') }}">Retour à la liste</a>
+                    <a class="btn btn-secondary ms-2" href="{{ path('admin_work_update', {'id': work.id}) }}">Modifier</a>
+                    {{ include('dashboard/work_dashboard/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    <div>
 {% endblock %}
