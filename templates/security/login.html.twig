@@ -1,35 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    <div class="m-5">
-        <h1 class="mb-3 font-weight-normal text-center">Connexion</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" autocomplete="email" required autofocus>
-        <label for="inputPassword">Mot de passe</label>
-        <input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
-
-        <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-        >
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
-                </label>
+    <h1 class="text-center mt-5">Connexion</h1>
+    <div class="p-5 container-xxl d-flex justify-content-around">
+        <section class="p-4 rounded-3 shadow-lg d-column-flex justify-content-center col-sm-12 col-md-8 col-lg-6 mb-5">
+            {% if error %}
+                <p class="text-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </p>
+            {% endif %}
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" autocomplete="email" required autofocus>
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="d-flex flex-column flex-sm-row justify-content-between">
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    </label>
+                </div>
+                <button class="btn btn-dark btn-md" type="submit">Se connecter</button>
             </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
+        </section>
     </div>
 </form>
 {% endblock %}

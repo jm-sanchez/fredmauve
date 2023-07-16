@@ -143,3 +143,11 @@ Erreurs :
     - Ajout de la case à cocher sur l'utilisation des données saisies par l'utilisateur
     - Modification du fichier "FormType" et "contact.css"
 - Intégration de reCAPTCHA v3 de Google grâce au bundle KarserRecaptcha3Bundle
+
+07/07 (Juan)
+- Modification de la vue du fomulaire de login:
+    - Le message d'erreur s'affiche en français et dans la partie suprérieure interne dur formulaire.
+    - Ajout de la case à coché "se souvenir de moi"
+- Configuration de la langue de l'application (config/packages/translation.yaml)
+- Changement de la route d'accès une fois que l'admin est connecté (src/Security/AppAuthenticator.php)
+- Modification de la vue de l'index du contact_dashboard
