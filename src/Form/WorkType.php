@@ -21,7 +21,7 @@ class WorkType extends AbstractType
         $builder
             ->add('technique', TextType::class, [
                 'label' => '(*) Technique',
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                 ]
@@ -43,7 +43,7 @@ class WorkType extends AbstractType
             ])
             ->add('title', TextType::class, [
                 'label' => '(*) Titre',
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                 ]
@@ -52,7 +52,7 @@ class WorkType extends AbstractType
                 'label' => '(*) Image(s)',
                 'mapped' => false,
                 'multiple' => true,
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                 ]
@@ -87,7 +87,7 @@ class WorkType extends AbstractType
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => '(*) Quantité',
-                'required' => false,
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control outline my-3',
                 ]
@@ -106,7 +106,6 @@ class WorkType extends AbstractType
                     'class' => 'form-control outline my-3',
                 ]
             ])
-            // ->add('administrator')
         ;
     }
 

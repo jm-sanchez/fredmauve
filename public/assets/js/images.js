@@ -1,22 +1,18 @@
-// sélection de tous les liens supprimer
+// sélection de tous les liens "supprimer"
 let links = document.querySelectorAll("[data-delete]");
 
-// On boucle sur les liens
+// Boucle sur les liens
 for(let link of links){
-    // On met un écouteur d'évènements
+    // Écouteur d'évènement
     link.addEventListener("click", function(e){
-        // On bloque le comportement par défaut du lien "supprimer"
+        // Blocage du comportement par défaut du lien "supprimer"
         e.preventDefault();
-
-        // On demande confirmation
+        // Demande de confirmation
         if(confirm("Voulez-vous vraiment supprimer cette image ?")){
-            // On envoie la requête Ajax
+            // Envoi de la requête Ajax
             fetch(this.getAttribute("href"), {
                 method: "DELETE",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                },
+                // Les données à envoyer avec la requête
                 body: JSON.stringify({"_token": this.dataset.token})
             }).then(response => response.json())
             .then(data => {
@@ -29,3 +25,4 @@ for(let link of links){
         }
     })
 }
+
