@@ -53,9 +53,8 @@ h2:hover {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left center;
-    height: 20em;
+    height: 20rem;
     width: 100%;
-    padding: 1em;
     position: relative;
     text-align:center;
     display: flex;
@@ -71,7 +70,7 @@ h2:hover {
         font-size: 3rem;
     }
     .linkSection {
-        height: 30em;
+        height: 30rem;
     }
 }
 @media screen and (min-width: 1296px) {
