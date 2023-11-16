@@ -146,8 +146,8 @@ Erreurs :
 
 07/07 (Juan)
 - Modification de la vue du fomulaire de login:
-    - Le message d'erreur s'affiche en français et dans la partie suprérieure interne dur formulaire.
-    - Ajout de la case à coché "se souvenir de moi"
+    - Le message d'erreur s'affiche en français et dans la partie supérieure interne dur formulaire.
+    - Ajout de la case à cocher "se souvenir de moi"
 - Configuration de la langue de l'application (config/packages/translation.yaml)
 - Changement de la route d'accès une fois que l'admin est connecté (src/Security/AppAuthenticator.php)
 - Modification de la vue de l'index du contact_dashboard
@@ -155,3 +155,26 @@ Erreurs :
 10/07
 - Modification de tous les templates de WorkDashboard
 - Ajout de contraintes dans l'entité Work le Slug est désormais null
+
+
+//================================//
++++ Modifications après le stage +++
+//================================//
+
+15/11
+- Création du CartService, CartController et ses templates : index, success et validate
+- Ajout de l'icône "panier" dans la navbar. NOTE: Pour que ça marche correctement il faut ajouter la variable  - 'cart' => $cartService->getTotal() - dans la méthode index dans chaque controlleur pour ne pas avoir une erreur.
+- Ajout du fichier cart.js pour traiter le message flash.
+- Élimination du BoutiqueController et de son template qui étaient inutilisés.
+- Adaptation du ShopController pour afficher les oeuvres qui possèdent la propriété "saleable" activée.
+- Affichage des oeuvres vendables dans la boutique (fichiers TWIG et CSS).
+- Template "validate" pour la validation de payement (TWIG et CSS).
+- Création de dossier "payment_method" dans les assets pour stocker les images des modes de paiement.
+- Création des entités "Customer" et "OrderDetails"
+- Création du formulaire "CustomerFromType" pour l'ajout des coordonnées du client avant de confirmer la commande et passer à STRIPE.
+- Mise en place des contraintes de validation sur l'entité "Customer"
+- Installation de la librairie stripe "composer require stripe/stripe-php"
+- Mis en place du système de paiement (STRIPE) dans le fichier "PaymentController"
+- Mise en place du système d'envoi de mail (MAILTRAP). Il sert à communiquer à l'admin et au client que la commande à été confirmée.
+    - NOTE: pour que ce système marche correctement, j'ai dû commenter la ligne 19 (routing des emails) dans le fichier "config/packages/messenger.yaml" pour empêcher l'envoi de mails en mode async. De cette façon, les mails sont interceptés par MailTrap et donc visibles dans l'inbox du compte MailTrap.
+- Création d'un dossier "emails" avex les deux templates qui contiennent les infos des commandes confirmées (Admin et Client).

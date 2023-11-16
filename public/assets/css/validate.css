@@ -1,0 +1,276 @@
+.container_address {
+  /* box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5); */
+  padding: 3px 30px 13px 30px;
+  /* width:60%; */
+  margin: auto;
+  margin-top: 20px;
+  /* float: left; */
+  width: 50%;
+}
+
+.container_recap {
+  /* box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5); */
+  padding: 3px 30px 20px 30px;
+  /* width:50%; */
+  margin: auto;
+  margin-top: 20px;
+  /* float: right; */
+  /* width: 25%; */
+  /* margin-right: 5%; */
+}
+
+.container_forms {
+  display: flex;
+}
+
+.total {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: 2px rgb(194, 178, 107, 0.5) solid;
+  text-align: center;
+  width: 100%;
+  color: rgb(59, 57, 56);
+}
+
+.total>p {
+  margin: 2px;
+  color: rgb(59, 57, 56);
+  font-size: 1em;
+}
+
+.title_validate {
+  text-align: center;
+  /* font-family:'Open Sans',sans-serif; */
+  font-size: 1.5em;
+  /* font-weight: lighter; */
+  /* color: rgb(209, 195, 132); */
+  /* text-transform: uppercase; */
+  letter-spacing: 2px;
+}
+
+hr {
+  color: rgb(194, 178, 107, 0.5);
+  margin-bottom: 40px;
+}
+
+.recap {
+  display: flex;
+}
+
+.product {
+  margin-left: 20px;
+}
+
+.div_detail {
+  display: flex;
+  flex-direction: column;
+  /* width: 50%; */
+}
+
+.price {
+  font-weight: bold;
+}
+
+.img_card {
+  width: 100px;
+  height: 100px;
+}
+
+.card_payment {
+  width: 38px;
+  vertical-align: middle;
+}
+
+.form_group {
+  margin-bottom: 15px;
+  font-size: 0.9em;
+}
+
+.input_form {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  color: #000;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.input_form:hover {
+  border-bottom-color: #115a9b;
+}
+
+.button_validate {
+  align-self: center;
+  background-color: #000;
+  padding: 10px 40px;
+  color: white;
+  cursor: pointer;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 1em;
+  text-decoration: none;
+  border: none;
+}
+
+.button_cancel {
+  align-self: center;
+  background-color: rgb(194, 178, 107, 0.7);
+  padding: 5px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1em;
+  border: none;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.button_cancel>a {
+  text-decoration: none;
+  color: #000
+}
+
+.button_cancel>a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.button_validate>a {
+  text-decoration: none;
+  color: rgb(70, 16, 16);
+}
+
+.button_validate:hover {
+  color: rgb(194, 178, 107, 0.8);
+}
+
+.message_error {
+  color: red;
+}
+
+.group_link {
+  margin-left: 5%;
+  margin-top: 30px;
+}
+
+.group_link>a {
+  text-decoration: none;
+  color: rgb(59, 57, 56);
+}
+
+.group_link>a:hover {
+  text-decoration: double;
+  color: rgb(194, 178, 107);
+  font-weight: 900;
+}
+
+.group_link>.page {
+  text-decoration: underline;
+}
+
+.footer {
+  float: left;
+  padding-top: 0px;
+}
+
+.link {
+  padding-top: 70px;
+}
+
+.container_link {
+  margin-bottom: 0px;
+}
+
+.group_link {
+  margin: 40px 0px 20px 40px;
+}
+
+@media (max-width: 1020px) {
+  /* .img_card {
+    width: 30%;
+    height: 30%;
+  } */
+
+  .button_validate {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .button_cancel {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .button_cancel {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 750px) {
+  .footer {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 80px 0px 30px 0px;
+  }
+
+  .container_forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container_address, .container_recap {
+    width: 90%;
+  }
+  .link {
+    text-align: center;
+    padding: 0px;
+  }
+
+  .container_link {
+    text-align: center;
+  }
+
+  .epv {
+    width: 30%;
+    margin-right: 0.90rem;
+  }
+
+  .epv-logo {
+
+    width: 80%;
+    height: auto;
+    align-self: center;
+  }
+
+  .mof {
+    margin-left: 0, 90rem;
+    width: 30%;
+
+  }
+
+  .mof-logo {
+    width: 80%;
+    height: auto;
+    align-self: center;
+  }
+
+  .li_link {
+    font-size: 0.6em;
+  }
+
+  .title_validate {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 510px) {
+  .button_validate {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/successpay.css') }}" />
+{% endblock %}
+
+{% block title %}Success{% endblock %}
+
+{% block body %}
+<div class="ref-container">
+    <h1 class="thanks">Merci</h1>
+    <h2>pour votre commande</h2>
+    <p>Votre commande a été enregistrée et sera prise en compte dans les meilleurs délais. Vous recevrez un mail de confirmation de commande à {{ customer.email }}</p>
+    <a class="home-link" href="{{ path('app_home') }}">Retour à la page d'accueil</a>
+</div>
+{% endblock %}

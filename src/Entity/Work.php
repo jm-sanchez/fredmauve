@@ -99,9 +99,15 @@ class Work
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=OrderDetails::class, mappedBy="work")
+     */
+    private $orderDetails;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
 
@@ -284,4 +290,11 @@ class Work
         return $this;
     }
 
+//     /**
+//      * @return Collection<int, OrderDetails>
+//      */
+//     public function getOrderDetails(): Collection
+//     {
+//         return $this->orderDetails;
+//     }
 }

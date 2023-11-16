@@ -1,0 +1,45 @@
+{% apply inline_css(source('@styles/emails/order.css')) %}
+  <p>Bonjour Fred,</p>
+
+  <p>Une commande a été passée dans la boutique !</p>
+
+  <p class="order">Détails de la commande :</p>
+  <ul class="list">
+    <li>N° de référence : <strong>{{ order[0].reference }}</strong></li>
+    <li>Date : <strong>{{ order[0].createdAt|format_datetime('short', 'short', locale='fr') }}</strong></li>
+    <li>Montant payé : <strong>{{ totalPrice }} €</strong></li>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Quantité</th>
+        <th>Format</th>
+        <th>Localisation</th>
+      </tr>
+    </thead>
+    {% for item in order %}
+      <tbody>
+        <tr>
+          <td><strong>{{ item.work.title|upper }}</strong></td>
+          <td><strong>{{ item.quantity }}</strong></td>
+          <td><strong>{{ item.work.format }}</strong></td>
+          <td><strong>{{ item.work.localisation }}</td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+
+  <p class="order">Détails du client :</p>
+  <ul class="list">
+    <li>Nom : <strong>{{ customer.lastname|upper }}</strong></li>
+    <li>Prénom : <strong>{{ customer.firstname }}</strong></li>
+    <li>Adresse : <strong>{{ customer.address }}</strong></li>
+    <li>Code Postal : <strong>{{ customer.zipcode }}</strong></li>
+    <li>Ville : <strong>{{ customer.city }}</strong></li>
+    <li>Pays : <strong>{{ customer.country }}</strong></li>
+    <li>Téléphone : <strong>{{ customer.phone }}</strong></li>
+    <li>Email : <strong>{{ customer.email }}</strong></li>
+  </ul>
+
+{% endapply %}

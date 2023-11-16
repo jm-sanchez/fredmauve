@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Admin;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\AdminRepository;
+use App\Service\CartService;
 use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
@@ -19,7 +19,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function index(Request $request, EntityManagerInterface $em, AdminRepository $adminRepository, Recaptcha3Validator $recaptcha3Validator): Response
+    public function index(Request $request, EntityManagerInterface $em, AdminRepository $adminRepository, CartService $cartService, Recaptcha3Validator $recaptcha3Validator): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -58,6 +58,7 @@ class ContactController extends AbstractController
 
         return $this->render('contact/index.html.twig', [
             'formContact' => $form->createView(),
+            'cart' => $cartService->getTotal(),
         ]);
     }
 }

@@ -1,0 +1,37 @@
+{% apply inline_css(source('@styles/emails/order.css')) %}
+  {# <img src="{{ email.image('@images/fred2.jpg') }}" alt="Logo"> #}
+
+  <p>Merci pour votre achat!</p>
+  <p>Nous sommes ravis de vous informer que votre commande a été confirmée.</p>
+  <p>Ci-dessous vous trouverez le détail de votre commande :</p>
+  <ul class="list">
+    <li>N° de référence : <strong>{{ order[0].reference }}</strong></li>
+    <li>Date : <strong>{{ order[0].createdAt|format_datetime('short', 'short', locale='fr') }}</strong></li>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Quantité</th>
+        <th>Format</th>
+        <th>Prix</th>
+      </tr>
+    </thead>
+    {% for item in order %}
+      <tbody>
+        <tr>
+          <td><strong>{{ item.work.title|upper }}</strong></td>
+          <td><strong>{{ item.quantity }}</strong></td>
+          <td><strong>{{ item.work.format }}</strong></td>
+          <td><strong>{{ item.work.price }} €</strong></td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+
+  <p>Le montant total de votre achat est de <strong>{{ totalPrice }} €.</strong></p>
+  <p>Vous recevrez une notification par email dès que votre colis sera expédié. Pour toute question, n'hésitez pas à nous contacter à <strong>{{ admin_email }}</strong></p>
+  <p>Nous vous remercions pour votre soutien.</p>
+  <p>Cordialement,</p>
+  <p>Fred Mauve</p>
+{% endapply %}

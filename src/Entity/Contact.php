@@ -40,7 +40,7 @@ class Contact
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
      *     message = "Merci de remplir ce champ."
      * )

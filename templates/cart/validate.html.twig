@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Récapitulatif de commande{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/validate.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+	{{ form_start(form) }}
+	<div class="group_link">
+		<a class='page' href="{{ path('app_shop') }}">Boutique ></a>
+		<a class='page' href="{{ path('cart_index') }}">Panier ></a>
+		<a class='page' href="{{ path('validate') }}">Finaliser la commande</a>
+		<br>
+		<button class="button_cancel">
+			<a href="{{ path('cart_index')}}">< Retour au Panier</a>
+		</button>
+	</div>
+
+	<div class="container_forms">
+		{# Formulaire de coordonnée #}
+		<div class="container_address">
+			<h1 class="title_validate">Adresse de facturation et de livraison</h1>
+			<hr>
+			<div class="form_container">
+				<div class="form_group">
+					{{ form_row(form.lastname) }}
+					{# {% for error in form.lastname.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+				<div class="form_group">
+					{{ form_row(form.firstname) }}
+					{# {% for error in form.firstname.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+				<div class="form_group">
+					{{ form_row(form.email) }}
+					{# {% for error in form.email.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+				<div class="form_group">
+					{{ form_row(form.phone) }}
+					{# {% for error in form.phone.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+				<div class="form_group">
+					{{ form_row(form.address) }}
+					{# {% for error in form.address.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+				<div class="form_group">
+					{{ form_row(form.zipcode) }}
+					{# {% for error in form.zipcode.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+
+				<div class="form_group">
+					{{ form_row(form.city) }}
+					{# {% for error in form.city.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+
+				<div class="form_group">
+					{{ form_row(form.country) }}
+
+					{# {% for error in form.country.vars.errors %}
+						<p class="message_error">{{ error.message }}</p>
+					{% endfor %} #}
+				</div>
+			</div>
+		</div>
+
+		<div class="container_recap">
+			{# En-tête de page #}
+			<h1 class="title_validate">Détails de la commande</h1>
+			<hr>
+			{# Section récapitulative de la commande de l'utilisateur #}
+			<div class="card-body">
+				{% set total = null %}
+				{% for work in cart %}
+					{% set total = total + (work.work.price * work.quantity)%}
+					<div class="recap">
+						<img class="img_card" src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.work.images[0].name) }}" width="100" height="100" alt="Product Image">
+						<div class="div_detail">
+							<div class="product">
+								<p>{{ work.work.title }}</p>
+							</div>
+							<div class="product">
+								<p>Quantité : {{ work.quantity }}</p>
+							</div>
+							<div class="product price">
+								<p>{{ work.quantity * work.work.price }} €</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				<div class="total price">
+					<p>Total (Taxe inclus) :
+						<br>
+						{{ total|number_format(2, ',', '') }}
+						€
+					</p>
+				</div>
+				<hr>
+
+				{{ form_widget(form.submit) }}
+
+				<p><i class="fa-solid fa-lock"></i>	100 % Paiement sécurisé</p>
+				<img class='card_payment' src="{{ asset('assets/payment_method/mastercard.png')}}" alt="mastercard">
+				<img src="{{ asset('assets/payment_method/visa.png')}}" class="card_payment" alt="visa">
+				<img src="{{ asset('assets/payment_method/logo-cb.jpg')}}" class="card_payment" alt="visa">
+				<img src="{{ asset('assets/payment_method/amex.svg')}}" class="card_payment" alt="visa">
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    paths:
+        '%kernel.project_dir%/public/assets/uploads/images': images
+        '%kernel.project_dir%/public/assets/css': styles
 
 when@test:
     twig:

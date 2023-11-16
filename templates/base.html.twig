@@ -11,14 +11,14 @@
     </head>
     <body>
         {# Name #}
-        <header class="border-bottom border-secondary my-3 mx-lg-5 mt-lg-5">
-            <section>
-                <h1 class="text-center text-wrap">
-                    <a class="text-reset text-decoration-none" href="{{ path('app_home') }}">Fred Mauve</a>
-                </h1>
-            </section>
-        {# Navbar #}
-        {% include "_partials/_nav.html.twig" %}
+        <header class = "my-3 mx-lg-5 mt-lg-5">
+            <h1 class="logo text-center text-wrap">
+                <a class="text-reset text-decoration-none" href="{{ path('app_home') }}">Fred Mauve</a>
+            </h1>
+            {# Navbar #}
+            <div class="container d-inline-flex">
+                {% include "_partials/_nav.html.twig" %}
+            </div>
 
         </header>
         {% if app.user %}
@@ -36,5 +36,6 @@
 
         {% block javascripts %}{% endblock %}
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+	    <script src="{{ asset('assets/js/navbar.js') }}"></script>
     </body>
 </html>

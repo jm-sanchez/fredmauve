@@ -1,0 +1,19 @@
+.order {
+  text-transform: uppercase;
+}
+.list {
+  list-style: none;
+}
+img {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
+}
+table, th, td {
+  border: #000 1px solid;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+}

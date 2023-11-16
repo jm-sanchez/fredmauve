@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}"/>
+{% endblock %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+	<h1 class="title_cart">Panier</h1>
+	{% if cart|length > 0 %}
+		<div class="group_link">
+			<a class='page' href="{{ path('app_shop') }}">Boutique ></a>
+			<a class='page' href="{{ path('cart_index') }}">Panier ></a>
+			<a class='link_final' href="#">Finaliser la commande</a>
+			<div class="button-group">
+				<a class='add_product' href="{{ path('app_shop') }}#creations">Ajouter une oeuvre<a/>
+				<a class="removeAll" href="{{ path('cart_removeAll') }}">Vider le Panier</a>
+      </div>
+    </div>
+    {% for message in app.flashes('MessageFlash') %}
+      <div class="container_message">
+        <div class="flash-message" style='width:50%;margin:auto;background-color:#00800026;padding:15px;text-align:center;'>
+          {{ message }}
+        </div>
+      </div>
+    {% endfor %}
+    <div class="container">
+      <table>
+        <tbody>
+          {% set total = null %}
+          {% for item in cart %}
+            {% set total = total + (item.work.price * item.quantity)%}
+            <tr>
+              <td>
+                {# <img class="product_img" src="{{ asset('assets/images/imgProduct/' ~ item.work.image )}}" alt="image du produit"> #}
+              </td>
+              <td>{{ item.work.title }}</td>
+              <td class="price">{{ item.work.price }}
+                €</td>
+              <td>
+                <div class="number_group">
+                  <a class="number-input" href="{{ path('cart_decrease' , {id: item.work.id}) }}" data-decrement>-</a>
+                  <input class="quantity_number" type="number" value={{ item.quantity }} readonly>
+                  <a class="number_decrement" href="{{ path('cart_add' , {id: item.work.id}) }}" data-increment>+</a>
+                </div>
+              </td>
+              <td>
+                <p class="total_cart">Total :
+                  {{ (item.work.price * item.quantity)|number_format(2, ',', '.') }}
+                  €</p>
+              </td>
+              <td class="div-remove">
+                <a class="remove" href="{{ path('cart_remove', { 'id': item.work.id }) }}">
+                  <i class="fa-solid fa-trash-can"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="total">Total TTC :
+        {{ total|number_format(2, ',', '') }}
+        €</p>
+      <form method="POST" action="{{ path('validate')}}">
+        <input type="hidden" name="amount">
+        <input type="hidden" name="total" value="{{ total }}">
+        <button class="validate_link" type="submit" id="id">Valider mon panier</button>
+      </form>
+    </div>
+  {% else %}
+    <div class="container_cartZero">
+      <p class='cart_zero'>Le panier est vide</p>
+      <a class="button_link" href="{{ path('app_shop') }}">Boutique</a>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/js/cart.js') }}"></script>
+{% endblock %}
+

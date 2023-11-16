@@ -1,11 +1,18 @@
-<nav class="navbar navbar-expand-lg text-center">
+<nav class="navbar navbar-expand-lg text-center bg-white border-bottom border-secondary" id="navbar">
   <div class="container-fluid d-flex justify-content-center">
     <button class="navbar-toggler text-dark border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav m-auto mt-2 mb-2 mb-lg-0 fs-6 ">
-        <li class="m-3 nav-item">
+      {# <h2 class="d-none" id="logo2">
+        <a class="text-reset text-decoration-none" href="{{ path('app_home') }}">Fred Mauve</a>
+      </h2> #}
+      <ul class="navbar-nav m-auto mt-2 mb-2 mb-lg-0 fs-6 justify-content-center align-items-center">
+        {# Logo left side navbar #}
+        {# <li class="m-3 fs-4 d-none me-5" id="logo2">
+            <a href="{{ path('app_home') }}" class="text-dark nav-link text-decoration-none">Fred Mauve</a>
+        </li> #}
+        <li class="ms-lg-5 m-3 nav-item">
             <a href="{{ path('app_home') }}" class="text-dark nav-link text-decoration-none">Accueil</a>
         </li>
         <li class="m-3 nav-item">
@@ -28,6 +35,22 @@
             <a href="{{ path('admin_dashboard') }}" class="text-dark nav-link text-decoration-none">Dashboard</a>
         </li>
         {% endif %}
+        <li class="m-3 nav-item">
+          <a href="{{ path('cart_index') }}" class="text-dark nav-link text-decoration-none">
+            {% if cart is not empty %}
+              <i class="fa-solid fa-shopping-cart menu-icon active"></i>
+              <span class="cart-count">
+                {% set totalQuantity = 0 %}
+                {% for item in cart %}
+                  {% set totalQuantity = totalQuantity + item.quantity %}
+                {% endfor %}
+                {{ totalQuantity }}
+              </span>
+            {% else %}
+              <i class="fa-solid fa-shopping-cart menu-icon inactive" style="visibility:collapse;"></i>
+            {% endif %}
+          </a>
+        </li>
       </ul>
     </div>
   </div>

@@ -1,20 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ShopController!{% endblock %}
+{% block title %}Shop{% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset("assets/css/shop.css") }}">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="products-gallery">
+		{% for work in saleableWorks %}
+			{% if work %}
+				<div class="product-card">
+					<h3>{{ work.title }}</h3>
+					<img src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" alt="{{ work.images[0].name }}">
+					<div class="divAdd">
+						<form action="{{ path('cart_add', {'id': work.id}) }}" method="POST">
+							{# <input class="addCreation" type="submit" value="Ajouter au panier"> #}
+							<button class="addCreation" type="submit" value="Ajouter au panier">Ajouter au panier</button>
+						</form>
+						<p class="price">{{ work.price }}&euro;</p>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Program/laragon/www/webforce3/cours/exercices/Project/fredmauve/src/Controller/ShopController.php'|file_link(0) }}">src/Controller/ShopController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Program/laragon/www/webforce3/cours/exercices/Project/fredmauve/templates/shop/index.html.twig'|file_link(0) }}">templates/shop/index.html.twig</a></code></li>
-    </ul>
-</div>
+	{% if not saleableWorks %}
+			<h3 class="m-5 text-center">Aucune œuvre n'est disponible pour le moment.</h3>
+	{% endif %}
+
 {% endblock %}
+
+
+{# AUTRE FAÇON DE SÉLECTIONNER LES OEUVRES VENDABLES #}
+{# Création d'une variable pour la vérification de la propriété "saleable" #}
+{# {% set anySaleableWork = true %} #}
+
+{# <div class="products-gallery">
+	{% for work in works %}
+		{% if work.saleable %}
+			<div class="product-card">
+				<h3>{{ work.title }}</h3>
+				<img src="{{ asset('assets/uploads/images/works/mini/300x300-' ~ work.images[0].name) }}" alt="{{ work.images[0].name }}">
+				<div class="divAdd"> #}
+					{# <form action="{{ path('cart_add', {'id': work.id}) }}" method="POST"> #}
+                        {# <input class="addCreation" type="submit" value="Ajouter au panier"> #}
+                    {# </form> #}
+                    {# <p class="price">{{ work.price }}&euro;</p>
+                </div>
+			</div>
+		{% else %} #}
+			{# S'il n'y a aucune œuvre a vendre, la variable est réinitialisée à "false" #}
+			{# {% set anySaleableWork = false %}
+		{% endif %}
+	{% endfor %}
+</div>
+
+{% if not anySaleableWork %}
+    <h3 class="m-5 text-center">Aucune œuvre n'est disponible pour le moment.</h3>
+{% endif %} #}

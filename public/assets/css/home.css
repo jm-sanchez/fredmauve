@@ -1,7 +1,3 @@
-body {
-	max-width: 1440px;
-    margin: auto;
-}
 h1.title {
     font-size: 2rem;
 }
@@ -42,7 +38,7 @@ h2.tabs {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-h2:hover {
+h2.tabs:hover {
     text-decoration: underline;
 }
 .row a {

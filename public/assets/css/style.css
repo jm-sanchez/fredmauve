@@ -5,21 +5,29 @@
 }
 body {
     font-family: 'Space Mono', monospace;
+    max-width: 1440px;
+    margin: auto;
 }
 
-/* Navbar */
+/* Navbar and logo*/
 header {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
 }
-header section h1 {
+header h1.logo {
     font-size: 4em;
+    width: 100%;
 }
-
+nav.navbar {
+    width: 100%;
+}
+/* div h2#logo2 {
+    margin-left: 100px;
+} */
 /* Hover links navbar */
-nav ul li a:hover {
+nav ul li.nav-item a:hover {
     font-weight: bold;
 }
 
