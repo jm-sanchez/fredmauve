@@ -178,3 +178,7 @@ Erreurs :
 - Mise en place du système d'envoi de mail (MAILTRAP). Il sert à communiquer à l'admin et au client que la commande à été confirmée.
     - NOTE: pour que ce système marche correctement, j'ai dû commenter la ligne 19 (routing des emails) dans le fichier "config/packages/messenger.yaml" pour empêcher l'envoi de mails en mode async. De cette façon, les mails sont interceptés par MailTrap et donc visibles dans l'inbox du compte MailTrap.
 - Création d'un dossier "emails" avex les deux templates qui contiennent les infos des commandes confirmées (Admin et Client).
+
+17/11
+- Optimisation du PaymentController (création de plusieurs méthodes pour séparer les tâches)
+- Création du LegalController (et son twig) pour le contrôle et affichage des méntions légales

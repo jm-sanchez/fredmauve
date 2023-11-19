@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("assets/css/legal.css") }}">
+{% endblock %}
+
+{% block title %}Mentions Légales{% endblock %}
+
+{% block body %}
+    <h1 class='title'>Mentions Légales</h1>
+
+    <div class="container">
+        <h2>Identification de l'entreprise</h2>
+        <ul>
+            <li>Fred MAUVE (Entrepreneur individuel)</li>
+            <li>Siège social : 1 rue Victor Hugo, 75000 Paris</li>
+            <li>Numéro d'immatriculation au RCS : XXXXXXX</li>
+            <li>Numéro d'identification à la TVA : XXXXXXX</li>
+        </ul>
+        <h2>Coordonnées</h2>
+        <ul>
+            <li>Téléphone : +33 (0) 6 12 34 56 78</li>
+            <li>E-mail : contact@fred-mauve.fr</li>
+        </ul>
+        <h2>Hébergement</h2>
+        <ul>
+            <li>Nom de l’hébergeur.</li>
+            <li>Dénomination ou raison sociale.</li>
+            <li>Adresse.</li>
+            <li>Numéro de téléphone.</li>
+        </ul>
+    </div>
+{% endblock %}
