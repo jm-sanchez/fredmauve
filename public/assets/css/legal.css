@@ -1,13 +1,13 @@
 .title {
+    margin-top: 50px;
     text-align: center;
-    font-size: 3.5rem;
-    font-weight: lighter;
-    color: rgb(209, 195, 132);
+    font-size: 2rem;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
 }
-.container {
+.container_legal {
     margin: 50px;
+    text-align: center;
 }
 h2 {
     font-size: 1.5em;

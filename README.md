@@ -181,4 +181,4 @@ Erreurs :
 
 17/11
 - Optimisation du PaymentController (création de plusieurs méthodes pour séparer les tâches)
-- Création du LegalController (et son twig) pour le contrôle et affichage des méntions légales
+- Création du LegalController (et ses différents templates) pour le contrôle et affichage des méntions légales, politique de confidentialité, conditions générales de vente et crédits.

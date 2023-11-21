@@ -16,17 +16,17 @@ class LegalController extends AbstractController
             'cart' => $cartService->getTotal()
         ]);
     }
-    #[Route('/conditions-generales-de-vente', name: 'app_cgv')]
+    #[Route('/conditions-de-vente', name: 'app_cgv')]
     public function conditionsGeneralesVente(CartService $cartService): Response
     {
-        return $this->render('legal/conditions_generales_vente.html.twig', [
+        return $this->render('legal/conditions_de_vente.html.twig', [
             'cart' => $cartService->getTotal()
         ]);
     }
-    #[Route('/politique_de_confidentialite', name: 'app_pdc')]
+    #[Route('/politique-de-confidentialite', name: 'app_pdc')]
     public function politiqueDonneesPersonnelles(CartService $cartService): Response
     {
-        return $this->render('legal/politique_de_confidentialite.html.twig', [
+        return $this->render('legal/confidentialite.html.twig', [
             'cart' => $cartService->getTotal()
         ]);
     }
